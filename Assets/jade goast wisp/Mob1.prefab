@@ -129,7 +129,7 @@ MonoBehaviour:
   - {fileID: 893956381730684440}
   - {fileID: 893956381118627689}
   - {fileID: 893956382244107476}
-  _bulletPrefab: {fileID: 4555043957494487863, guid: d33a6999b1bd3504bb59ce66b68877e1,
+  _projectilePrefab: {fileID: 5452393351701661545, guid: d33a6999b1bd3504bb59ce66b68877e1,
     type: 3}
   _bulletSpeed: 10
   _bulletSpawnDuration: 0.5

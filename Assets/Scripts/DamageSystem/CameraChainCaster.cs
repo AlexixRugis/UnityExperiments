@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mobs;
+using ARTech.GameFramework;
 
 public class CameraChainCaster : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class CameraChainCaster : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
             {
-                IDamagable damagable = hit.transform.GetComponent<IDamagable>();
+                IDamageable damagable = hit.transform.GetComponent<IDamageable>();
                 if (damagable != null)
                 {
                     damagable.TakeDamage(_damage);
@@ -28,7 +29,7 @@ public class CameraChainCaster : MonoBehaviour
                         _maxRadius, 
                         _damage, 
                         _maxDamagablesCount, 
-                        new List<IDamagable>() { damagable }
+                        new List<IDamageable>() { damagable }
                     );
                 }
 

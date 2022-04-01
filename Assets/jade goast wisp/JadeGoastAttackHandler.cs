@@ -10,51 +10,52 @@ namespace Mobs
     {
         [SerializeField] private Transform _bulletHolder;
         [SerializeField] private Transform[] _bulletPositions;
-        [SerializeField] private Bullet _bulletPrefab;
+        [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private float _bulletSpeed;
         [SerializeField] private float _bulletSpawnDuration;
 
-        private LivingEntity _host;
-        private LivingEntity _target;
+        private ILivingEntity _host;
+        private ILivingEntity _target;
         private Vector3 _lastTargetPosition;
 
         private void Awake()
         {
-            _host = GetComponent<LivingEntity>();
+            _host = GetComponent<ILivingEntity>();
         }
 
         private void Update()
         {
-            if (_target != null && _host.CanSee(_target))
+            if (_target != null && !_target.IsRemoved && _host.CanSee(_target))
             {
-                _lastTargetPosition = _target.GetLocation();
+                _lastTargetPosition = _target.Location;
                 _bulletHolder.LookAt(_lastTargetPosition);
             }
         }
 
-        public void AttackRanged(LivingEntity damageable)
+        public void AttackRanged(ILivingEntity damageable)
         {
             StartCoroutine(Attack(damageable));
         }
 
-        private IEnumerator Attack(LivingEntity target)
+        private IEnumerator Attack(ILivingEntity target)
         {
             _target = target;
-            Bullet[] bullets = new Bullet[_bulletPositions.Length];
+            Projectile[] bullets = new Projectile[_bulletPositions.Length];
             var arr = _bulletPositions.OrderBy(x => Random.Range(0, _bulletPositions.Length)).ToArray();
 
             for (int i = 0; i < bullets.Length; i++)
             {
-                Bullet bullet = Instantiate(_bulletPrefab, arr[i].transform.position, Quaternion.identity, _bulletHolder);
+                Projectile bullet = Instantiate(_projectilePrefab, arr[i].transform.position, Quaternion.identity, _bulletHolder);
                 bullets[i] = bullet;
-
+                
                 yield return new WaitForSeconds(_bulletSpawnDuration);
             }
 
             for (int i = 0; i < bullets.Length; i++)
             {
-                Vector3 targetPoint = _lastTargetPosition;
-                bullets[i].Initialize(arr[i].transform.position, targetPoint, _bulletSpeed);
+                Vector3 direction = _lastTargetPosition - bullets[i].transform.position;
+                bullets[i].Speed = _bulletSpeed;
+                bullets[i].Launch(direction);
                 bullets[i].transform.SetParent(null);
                 yield return new WaitForSeconds(_bulletSpawnDuration);
             }

@@ -41,12 +41,12 @@ namespace Mobs
             SetupTree();
         }
 
-        protected override void Update()
+        protected override void OnLifeUpdate()
         {
-            base.Update();
+            base.OnLifeUpdate();
 
             _tree.Tick();
-        }
+        } 
 
         private void SetupTree()
         {

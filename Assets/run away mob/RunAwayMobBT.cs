@@ -36,9 +36,9 @@ namespace Mobs
             _tree.SetNodes(root);
         }
 
-        protected override void Update()
+        protected override void OnLifeUpdate()
         {
-            base.Update();
+            base.OnLifeUpdate();
 
             _tree.Tick();
         }
