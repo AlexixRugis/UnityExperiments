@@ -29,7 +29,7 @@ namespace ARTech.GameFramework.Examples
 
         protected override void HandleMovement()
         {
-            transform.LookAt(Location + Direction);
+            transform.LookAt(Position + Direction);
             transform.Translate(0, 0, Speed * Time.deltaTime);
         }
     }

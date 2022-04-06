@@ -14,9 +14,8 @@ namespace ARTech.GameFramework.Examples
                 RaycastHit hit;
                 if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
                 {
-                    Debug.Log(hit.point);
                     IProjectile projectile = Instantiate(_projectilePrefab, transform.position + new Vector3(0, 15, 0), Quaternion.identity);
-                    projectile.Launch(hit.point - projectile.Location);
+                    projectile.Launch(hit.point - projectile.Position);
                 }
             }
         }

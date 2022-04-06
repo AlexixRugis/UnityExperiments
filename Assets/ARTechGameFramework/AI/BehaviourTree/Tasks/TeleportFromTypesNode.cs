@@ -41,7 +41,7 @@ namespace ARTech.GameFramework.AI
             }
 
             if (_agent.Teleport(
-                _agent.GetRandomPositionAround(target.Location, _distance)
+                _agent.GetRandomPositionAround(target.Position, _distance)
             ))
             {
                 _lastTeleportTime = Time.time;

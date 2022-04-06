@@ -14,7 +14,7 @@ namespace ARTech.GameFramework
         [SerializeField] private float _maxHealth;
 
         private float _lastSeeTime;
-        public ILivingEntity Target { get; set; }
+        public IDamageable Target { get; set; }
         public float Health { get => _health; set => _health = Mathf.Clamp(value, 0, _maxHealth); }
         public float MaxHealth { get => _maxHealth; set { _maxHealth = value; _health = Mathf.Clamp(_health, 0, _maxHealth); } }
 
@@ -22,19 +22,12 @@ namespace ARTech.GameFramework
         {
             if (Target != null)
             {
-                if (!Target.IsRemoved)
+                if (CanSee(Target))
                 {
-                    if (CanSee(Target))
-                    {
-                        _lastSeeTime = Time.time;
-                    }
-
-                    if (Time.time - _lastSeeTime > _loseTargetDuration)
-                    {
-                        Target = null;
-                    }
+                    _lastSeeTime = Time.time;
                 }
-                else
+
+                if (Time.time - _lastSeeTime > _loseTargetDuration)
                 {
                     Target = null;
                 }
@@ -58,9 +51,9 @@ namespace ARTech.GameFramework
         public Vector3 EyeLocation => transform.TransformPoint(_eyeOffset);
         public float VisionDistance => _visionDistance;
         public float LastTargetSeeTime => _lastSeeTime;
-        public bool CanSee(ILivingEntity target)
+        public bool CanSee(ITransformable target)
         {
-            if (Physics.Linecast(EyeLocation, target.Location, out RaycastHit hit))
+            if (Physics.Linecast(EyeLocation, target.Position, out RaycastHit hit))
             {
                 if (hit.transform.GetComponent<ILivingEntity>() == target && hit.distance < _visionDistance) return true;
             }

@@ -29,8 +29,8 @@ namespace ARTech.GameFramework.AI
                 _agent.Speed = _runSpeed;
                 _agent.TryMove(
                     _agent.GetPositionFrom(
-                        _entity.Location,
-                        _avoidTarget.Location,
+                        _entity.Position,
+                        _avoidTarget.Position,
                         2f
                     )
                 );

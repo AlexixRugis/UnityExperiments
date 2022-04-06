@@ -19,8 +19,8 @@ namespace ARTech.GameFramework
 
         public bool DebugEnabled => _debug;
         public string Name { get => name; set => name = value; }
-        public Vector3 Location { get => transform.position; set => transform.position = value; }
-        public Quaternion Rotation { get => transform.rotation; set => transform.rotation = value; }
+        public Vector3 Position { get => !IsRemoved ? transform.position : Vector3.zero; set { if(!IsRemoved) transform.position = value; } }
+        public Quaternion Rotation { get => !IsRemoved ? transform.rotation : Quaternion.identity; set { if (!IsRemoved) transform.rotation = value; } }
         public float DieTime => throw new NotImplementedException();
         public bool IsRemoved => _isRemoved;
 
@@ -34,20 +34,9 @@ namespace ARTech.GameFramework
 
         protected abstract void OnLifeUpdate();
 
-        public float GetDistanceToGround()
-        {
-            if (Physics.Raycast(transform.position, DirectionDown, out RaycastHit hit, Mathf.Infinity, _obstacleMask))
-            {
-                return hit.distance;
-            }
-
-            return Mathf.Infinity;
-        }
-        public bool IsOnGround => GetDistanceToGround() > 0;
-
         public IEnumerable<IEntity> GetNearbyEntities(float radius, Type[] entityTypes)
         {
-            Collider[] colliders = Physics.OverlapSphere(Location, radius, _entitiesMask);
+            Collider[] colliders = Physics.OverlapSphere(Position, radius, _entitiesMask);
             var entities = new List<IEntity>(colliders.Length);
             foreach (var collider in colliders)
             {
@@ -75,7 +64,7 @@ namespace ARTech.GameFramework
 
             foreach (var e in GetNearbyEntities(radius, entityTypes))
             {
-                float sqrDistance = (Location - e.Location).sqrMagnitude;
+                float sqrDistance = (Position - e.Position).sqrMagnitude;
                 if (sqrDistance < minSqrDistance)
                 {
                     minSqrDistance = sqrDistance;
@@ -101,7 +90,7 @@ namespace ARTech.GameFramework
             if (_debug)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawLine(Location, Location + DirectionDown * _groundCheckDistance);
+                Gizmos.DrawLine(Position, Position + DirectionDown * _groundCheckDistance);
             }
         }
     }

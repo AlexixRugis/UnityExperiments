@@ -33,10 +33,10 @@ namespace ARTech.GameFramework.AI
         }
         public override NodeState Evaluate()
         {
-            ILivingEntity target = _entity.Target;
+            IDamageable target = _entity.Target;
             if (target == null) return NodeState.Failure;
 
-            float distance = (_entity.Location - target.Location).magnitude;
+            float distance = (_entity.Position - target.Position).magnitude;
             bool canSeeTarget = _entity.CanSee(target);
 
             if (distance <= _stoppingDistance + 3f)
@@ -51,7 +51,7 @@ namespace ARTech.GameFramework.AI
                     if (!_agent.HasPath())
                     {
                         _agent.TryMove(
-                            _agent.GetRandomPositionAround(_entity.Location, _dodgeDistance)
+                            _agent.GetRandomPositionAround(_entity.Position, _dodgeDistance)
                         );
                     } else
                     {
@@ -63,7 +63,7 @@ namespace ARTech.GameFramework.AI
             {
                 _agent.Speed = _movementSpeed;
 
-                Vector3 targetPosition = Vector3.Lerp(_entity.Location, target.Location, 1f - (_stoppingDistance / distance));
+                Vector3 targetPosition = Vector3.Lerp(_entity.Position, target.Position, 1f - (_stoppingDistance / distance));
 
                 _agent.TryMove(targetPosition);
             }

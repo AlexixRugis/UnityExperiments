@@ -63,7 +63,7 @@ namespace ARTech.GameFramework
             if (!DebugEnabled) return;
 
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(Location, _hitCheckRadius);
+            Gizmos.DrawWireSphere(Position, _hitCheckRadius);
         }
     }
 }

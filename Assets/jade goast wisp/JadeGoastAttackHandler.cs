@@ -15,7 +15,7 @@ namespace Mobs
         [SerializeField] private float _bulletSpawnDuration;
 
         private ILivingEntity _host;
-        private ILivingEntity _target;
+        private IDamageable _target;
         private Vector3 _lastTargetPosition;
 
         private void Awake()
@@ -25,19 +25,19 @@ namespace Mobs
 
         private void Update()
         {
-            if (_target != null && !_target.IsRemoved && _host.CanSee(_target))
+            if (_target != null && _host.CanSee(_target))
             {
-                _lastTargetPosition = _target.Location;
+                _lastTargetPosition = _target.Position;
                 _bulletHolder.LookAt(_lastTargetPosition);
             }
         }
 
-        public void AttackRanged(ILivingEntity damageable)
+        public void AttackRanged(IDamageable damageable)
         {
             StartCoroutine(Attack(damageable));
         }
 
-        private IEnumerator Attack(ILivingEntity target)
+        private IEnumerator Attack(IDamageable target)
         {
             _target = target;
             Projectile[] bullets = new Projectile[_bulletPositions.Length];

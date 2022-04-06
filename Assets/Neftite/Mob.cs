@@ -29,6 +29,8 @@ namespace Mobs
         public float Health { get; set; }
         public AIState StateAI { get; private set; }
         public float MaxHealth { get => MaxHealth; set => MaxHealth = value; }
+        public Vector3 Position { get => transform.position; set => transform.position = value; }
+        public Quaternion Rotation { get => transform.rotation; set => transform.rotation = value; }
 
         private float _chaseStartTime;
         private float _lastHealTime;
@@ -165,17 +167,16 @@ namespace Mobs
                 ProcessHeal();
             }
         }
+        public void ResetHealth()
+        {
+            Heal(MaxHealth);
+        }
 
 #if UNITY_EDITOR
         protected virtual void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, AgroRadius);
-        }
-
-        public void ResetHealth()
-        {
-            Heal(MaxHealth);
         }
 #endif
     }
