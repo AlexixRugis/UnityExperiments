@@ -37,6 +37,9 @@ namespace ARTech.GameFramework.AI
                 if (_agent.TryMove(_agent.GetRandomPositionAround(_entity.Position, Random.Range(_patrolDistance * 0.5f, _patrolDistance)))) {
                     _agent.Speed = _patrolSpeed;
                     return NodeState.Running;
+                } else if (_agent.Area.GetDistance(_entity.Position) > _patrolDistance)
+                {
+                    _agent.Teleport(_agent.Area.GetRandomPointIn());
                 }
             }
 

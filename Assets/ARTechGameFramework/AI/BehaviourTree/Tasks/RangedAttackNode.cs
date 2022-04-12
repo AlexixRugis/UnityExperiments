@@ -33,7 +33,7 @@ namespace ARTech.GameFramework.AI
         }
         public override NodeState Evaluate()
         {
-            IDamageable target = _entity.Target;
+            IHealth target = _entity.Target;
             if (target == null) return NodeState.Failure;
 
             float distance = (_entity.Position - target.Position).magnitude;

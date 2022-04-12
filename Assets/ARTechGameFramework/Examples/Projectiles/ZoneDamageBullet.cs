@@ -14,14 +14,17 @@ namespace ARTech.GameFramework.Examples
 
             foreach (var collider in colliders)
             {
-                IDamageable damagable = collider.GetComponent<IDamageable>();
-                if (damagable == null) continue;
+                IHealth damagable = collider.GetComponent<IHealth>();
+                if (damagable == null || damagable == Shooter) continue;
 
-                Vector3 target = collider.ClosestPoint(transform.position);
-                Vector3 direction = (target - transform.position);
+                if (DamageableTypesPredicate.Invoke(damagable))
+                {
+                    Vector3 target = collider.ClosestPoint(transform.position);
+                    Vector3 direction = (target - transform.position);
 
-                int damageAmount = (int)(_damageFalloff.Evaluate(direction.magnitude / _damageZone) * Damage);
-                damagable.TakeDamage(damageAmount);
+                    int damageAmount = (int)(_damageFalloff.Evaluate(direction.magnitude / _damageZone) * Damage);
+                    damagable.TakeDamage(damageAmount);
+                }
             }
 
             Remove();

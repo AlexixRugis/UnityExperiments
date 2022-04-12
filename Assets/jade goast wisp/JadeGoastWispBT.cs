@@ -52,10 +52,10 @@ namespace Mobs
         {
             var attackHandler = GetComponent<IRangedAttackHandler>();
             Node root = new Selector(new List<Node>() {
-                    new AngerTypesNode(this, new[] { typeof(Player) }, _attackCheckDistance),
+                    new AngerTypesNode(this, e => e is IPlayer, _attackCheckDistance),
 
-                    new TeleportFromTypesNode(this, _agent, _teleportCheckRadius, new[] { typeof(Player) }, _teleportCooldown, _teleportMovementDistance),
-                    new AvoidTypesNode(this, _agent, _runAwayCheckRadius, new[] { typeof(Player) }, _runAwaySpeed),
+                    new TeleportFromTypesNode(this, _agent, _teleportCheckRadius, e => e is IPlayer, _teleportCooldown, _teleportMovementDistance),
+                    new AvoidTypesNode(this, _agent, _runAwayCheckRadius, e => e is IPlayer, _runAwaySpeed),
                     new RangedAttackNode(this, _agent, attackHandler, _attackMovementSpeed, _attackStopDistance, _attackDodgeDistance, _attackDodgeCooldown, _attackCooldown),
                     new WanderAroundNode(this, _agent, _patrolMovementDistance, _patrolMovementSpeed, _restTime)
                 });

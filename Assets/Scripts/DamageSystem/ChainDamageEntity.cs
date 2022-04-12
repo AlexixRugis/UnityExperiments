@@ -12,7 +12,7 @@ namespace Mobs
         [SerializeField] private float _deathTime;
         [SerializeField] private LayerMask _findMask;
 
-        public void Initialize(Vector3 from, Vector3 to, float maxRadius, int damage, int remainingDamagebles, List<IDamageable> damaged)
+        public void Initialize(Vector3 from, Vector3 to, float maxRadius, int damage, int remainingDamagebles, List<IHealth> damaged)
         {
             Vector3 delta = to - from;
             float distance = delta.magnitude;
@@ -21,7 +21,7 @@ namespace Mobs
             transform.localScale = new Vector3(1, 1, distance / _size);
             transform.LookAt(to);
 
-            IDamageable damagable = FindNearestNonDamaged(to, damaged, maxRadius, out Vector3 position);
+            IHealth damagable = FindNearestNonDamaged(to, damaged, maxRadius, out Vector3 position);
             Debug.Log(damagable);
 
             if (damagable != null)
@@ -39,7 +39,7 @@ namespace Mobs
             Destroy(gameObject, _deathTime);
         }
 
-        private IDamageable FindNearestNonDamaged(Vector3 startPosition, List<IDamageable> damaged, float maxRadius, out Vector3 position)
+        private IHealth FindNearestNonDamaged(Vector3 startPosition, List<IHealth> damaged, float maxRadius, out Vector3 position)
         {
             Collider[] colliders = Physics.OverlapSphere(startPosition, maxRadius, _findMask);
 
@@ -48,7 +48,7 @@ namespace Mobs
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                IDamageable damagable = colliders[i].GetComponent<IDamageable>();
+                IHealth damagable = colliders[i].GetComponent<IHealth>();
                 if (damagable != null && !damaged.Contains(damagable))
                 {
                     float distance = Vector3.Distance(startPosition, colliders[i].transform.position);
@@ -67,7 +67,7 @@ namespace Mobs
             }
 
             position = colliders[nearestIndex].transform.position;
-            return colliders[nearestIndex].GetComponent<IDamageable>();
+            return colliders[nearestIndex].GetComponent<IHealth>();
         }
 
         private void OnDrawGizmosSelected()

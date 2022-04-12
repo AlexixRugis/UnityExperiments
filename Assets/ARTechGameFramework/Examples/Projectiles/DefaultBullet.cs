@@ -9,8 +9,8 @@ namespace ARTech.GameFramework.Examples
             Collider[] colliders = Physics.OverlapSphere(transform.position, HitCheckRadius, HitMask);
             foreach (var collider in colliders)
             {
-                IDamageable damagable = collider.GetComponent<IDamageable>();
-                if (damagable != null)
+                IHealth damagable = collider.GetComponent<IHealth>();
+                if (damagable != null && damagable != Shooter && DamageableTypesPredicate.Invoke(damagable))
                 {
                     damagable.TakeDamage(Damage);
                 }

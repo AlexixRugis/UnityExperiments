@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mobs
 {
-    public class Mob : MonoBehaviour, IDamageable
+    public class Mob : MonoBehaviour, IHealth
     {
         public enum AIState
         {
@@ -31,6 +31,9 @@ namespace Mobs
         public float MaxHealth { get => MaxHealth; set => MaxHealth = value; }
         public Vector3 Position { get => transform.position; set => transform.position = value; }
         public Quaternion Rotation { get => transform.rotation; set => transform.rotation = value; }
+        public string Name { get => name; set => name = value; }
+
+        public bool IsRemoved => false;
 
         private float _chaseStartTime;
         private float _lastHealTime;
@@ -170,6 +173,11 @@ namespace Mobs
         public void ResetHealth()
         {
             Heal(MaxHealth);
+        }
+
+        public void Remove()
+        {
+            Destroy(gameObject);
         }
 
 #if UNITY_EDITOR

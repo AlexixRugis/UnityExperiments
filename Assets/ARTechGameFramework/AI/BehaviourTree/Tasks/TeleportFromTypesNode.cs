@@ -9,18 +9,18 @@ namespace ARTech.GameFramework.AI
         private readonly IMovement _agent;
         private readonly float _cooldown;
         private readonly float _checkRadius;
-        private readonly Type[] _entityTypes;
+        private readonly Predicate<IEntity> _match;
         private readonly float _distance;
 
         private float _lastTeleportTime;
 
-        public TeleportFromTypesNode(ILivingEntity entity, IMovement agent, float checkRadius, Type[] entityTypes, float cooldown, float distance)
+        public TeleportFromTypesNode(ILivingEntity entity, IMovement agent, float checkRadius, Predicate<IEntity> match, float cooldown, float distance)
         {
             _entity = entity;
             _agent = agent;
             _cooldown = cooldown;
             _checkRadius = checkRadius;
-            _entityTypes = entityTypes;
+            _match = match;
             _distance = distance;
 
             _lastTeleportTime = 0;
@@ -33,7 +33,7 @@ namespace ARTech.GameFramework.AI
                 return NodeState.Failure;
             }
 
-            IEntity target = _entity.GetNearest(_checkRadius, _entityTypes);
+            IEntity target = _entity.GetNearest(_checkRadius, _match);
 
             if (target == null)
             {

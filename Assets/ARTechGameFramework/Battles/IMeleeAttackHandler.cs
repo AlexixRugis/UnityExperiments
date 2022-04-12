@@ -2,6 +2,6 @@ namespace ARTech.GameFramework
 {
     public interface IMeleeAttackHandler
     {
-        void AttackMelee(IDamageable damageable);
+        void AttackMelee(IHealth damageable);
     }
 }

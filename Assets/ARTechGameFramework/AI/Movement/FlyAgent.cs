@@ -9,9 +9,9 @@ namespace ARTech.GameFramework
     {
         [SerializeField] private float _radius;
         [SerializeField] private LayerMask _obstaclesMask;
-        [SerializeField] private float _maxHeight;
         [SerializeField] private float _stoppingDistance;
         [SerializeField] private float _speed;
+        [SerializeField] private Area _area;
 
         private Rigidbody _rigidbody;
 
@@ -20,6 +20,8 @@ namespace ARTech.GameFramework
         public float Speed { get => _speed; set => _speed = value; }
 
         public Vector3 CurrentVelocity => _rigidbody.velocity;
+
+        public IArea Area { get => _area; set => _area = value as Area; }
 
         private void Awake()
         {
@@ -37,16 +39,6 @@ namespace ARTech.GameFramework
                     _target = null;
                 }
             }
-        }
-
-        private float GetMaxHeight()
-        {
-            if (Physics.Raycast(_rigidbody.position, Vector3.down, out RaycastHit hit, float.PositiveInfinity, _obstaclesMask))
-            {
-                return hit.point.y + _maxHeight;
-            }
-
-            return float.PositiveInfinity;
         }
 
         public void ClearPath()
@@ -76,17 +68,7 @@ namespace ARTech.GameFramework
 
         public Vector3? GetRandomPositionAround(Vector3 center, float radius)
         {
-            float maxHeight = GetMaxHeight();
-            Vector3 direction = Random.onUnitSphere * radius;
-            if (center.y + direction.y > maxHeight) direction.y = -direction.y;
-            Vector3 directionNormalized = direction.normalized;
-
-            if (!Physics.SphereCast(transform.position, _radius, directionNormalized, out RaycastHit hit, radius, _obstaclesMask))
-            {
-                return center + direction;
-            }
-
-            return null;
+            return _area.GetRandomPointAround(center, radius, _radius);
         }
 
         public float GetRemainingDistance()

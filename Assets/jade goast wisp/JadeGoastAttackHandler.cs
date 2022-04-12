@@ -15,7 +15,7 @@ namespace Mobs
         [SerializeField] private float _bulletSpawnDuration;
 
         private ILivingEntity _host;
-        private IDamageable _target;
+        private IHealth _target;
         private Vector3 _lastTargetPosition;
 
         private void Awake()
@@ -32,12 +32,12 @@ namespace Mobs
             }
         }
 
-        public void AttackRanged(IDamageable damageable)
+        public void AttackRanged(IHealth damageable)
         {
             StartCoroutine(Attack(damageable));
         }
 
-        private IEnumerator Attack(IDamageable target)
+        private IEnumerator Attack(IHealth target)
         {
             _target = target;
             Projectile[] bullets = new Projectile[_bulletPositions.Length];
@@ -55,6 +55,7 @@ namespace Mobs
             {
                 Vector3 direction = _lastTargetPosition - bullets[i].transform.position;
                 bullets[i].Speed = _bulletSpeed;
+                bullets[i].DamageableTypesPredicate = d => d is not JadeGoastWispBT;
                 bullets[i].Launch(direction);
                 bullets[i].transform.SetParent(null);
                 yield return new WaitForSeconds(_bulletSpawnDuration);

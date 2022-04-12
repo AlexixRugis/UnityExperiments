@@ -8,13 +8,13 @@ namespace ARTech.GameFramework.AI
     public class AngerTypesNode : Node
     {
         private readonly ILivingEntity _entity;
-        private readonly Type[] _types;
+        private readonly Predicate<IEntity> _match;
         private readonly float _checkDistance;
 
-        public AngerTypesNode(ILivingEntity entity, Type[] entityTypes, float checkDistance)
+        public AngerTypesNode(ILivingEntity entity, Predicate<IEntity> match, float checkDistance)
         {
             _entity = entity;
-            _types = entityTypes;
+            _match = match;
             _checkDistance = checkDistance;
         }
 
@@ -22,10 +22,10 @@ namespace ARTech.GameFramework.AI
         {
             if (_entity.Target != null) return NodeState.Failure;
 
-            IEntity target = _entity.GetNearest(_checkDistance, _types);
+            IEntity target = _entity.GetNearest(_checkDistance, _match);
             if (target != null)
             {
-                _entity.Target = target as ILivingEntity;
+                _entity.Target = target as IHealth;
                 return NodeState.Success;
             }
 

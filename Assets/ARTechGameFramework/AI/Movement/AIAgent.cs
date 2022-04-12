@@ -6,6 +6,8 @@ namespace ARTech.GameFramework.AI
     [RequireComponent(typeof(NavMeshAgent))]
     public class AIAgent : MonoBehaviour, IMovement
     {
+        [SerializeField] private Area _area;
+
         private NavMeshAgent _agent;
 
         private NavMeshPath _path;
@@ -16,6 +18,8 @@ namespace ARTech.GameFramework.AI
         public float Speed { get => _agent.speed; set => _agent.speed = value; }
 
         public Vector3 CurrentVelocity => _agent.velocity;
+
+        public IArea Area { get => _area; set => _area = value as Area; }
 
         private void Awake()
         {
@@ -36,23 +40,6 @@ namespace ARTech.GameFramework.AI
         public void SetStopped(bool isStopped)
         {
             _agent.isStopped = false;
-        }
-
-        public Vector3? GetRandomPoint(Vector3 center, float radius)
-        {
-            bool hasCorrectPoint = false;
-            Vector3 position = Vector3.positiveInfinity;
-            while (!hasCorrectPoint)
-            {
-                NavMeshHit hit;
-                NavMesh.SamplePosition(Random.onUnitSphere * radius + center, out hit, radius, NavMesh.AllAreas);
-                position = hit.position;
-
-                _agent.CalculatePath(position, _path);
-                hasCorrectPoint = NavMeshPathStatus.PathComplete == _path.status;
-            }
-
-            return position;
         }
 
         public bool TryMove(Vector3? position)
@@ -80,19 +67,19 @@ namespace ARTech.GameFramework.AI
 
         public Vector3? GetRandomPositionAround(Vector3 center, float radius)
         {
-            bool hasCorrectPoint = false;
-            Vector3 position = Vector3.positiveInfinity;
-            while (!hasCorrectPoint)
-            {
+            Vector3? position = _area.GetRandomPointAround(center, radius, _agent.radius);
+
+
+            if (position != null) {
                 NavMeshHit hit;
-                NavMesh.SamplePosition(Random.onUnitSphere * radius + center, out hit, radius, NavMesh.AllAreas);
+                NavMesh.SamplePosition(position.Value, out hit, radius, NavMesh.AllAreas);
                 position = hit.position;
 
-                _agent.CalculatePath(position, _path);
-                hasCorrectPoint = NavMeshPathStatus.PathComplete == _path.status;
+                _agent.CalculatePath(position.Value, _path);
+                return NavMeshPathStatus.PathComplete == _path.status ? position : null;
             }
 
-            return position;
+            return null;
         }
 
         public Vector3? GetPositionFrom(Vector3 center, Vector3 from, float radius)

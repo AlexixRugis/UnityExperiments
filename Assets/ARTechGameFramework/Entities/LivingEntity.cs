@@ -5,16 +5,18 @@ namespace ARTech.GameFramework
 {
     public abstract class LivingEntity : Entity, ILivingEntity
     {
+        [Header("Health")]
         [SerializeField] private bool _isImmortal;
-
-        [SerializeField] private Vector3 _eyeOffset;
-        [SerializeField] private float _visionDistance;
-        [SerializeField] private float _loseTargetDuration;
         [SerializeField] private float _health;
         [SerializeField] private float _maxHealth;
 
+        [Header("Targeting")]
+        [SerializeField] private Vector3 _eyeOffset;
+        [SerializeField] private float _visionDistance;
+        [SerializeField] private float _loseTargetDuration;
+
         private float _lastSeeTime;
-        public IDamageable Target { get; set; }
+        public IHealth Target { get; set; }
         public float Health { get => _health; set => _health = Mathf.Clamp(value, 0, _maxHealth); }
         public float MaxHealth { get => _maxHealth; set { _maxHealth = value; _health = Mathf.Clamp(_health, 0, _maxHealth); } }
 
@@ -51,7 +53,7 @@ namespace ARTech.GameFramework
         public Vector3 EyeLocation => transform.TransformPoint(_eyeOffset);
         public float VisionDistance => _visionDistance;
         public float LastTargetSeeTime => _lastSeeTime;
-        public bool CanSee(ITransformable target)
+        public bool CanSee(ITransformableObject target)
         {
             if (Physics.Linecast(EyeLocation, target.Position, out RaycastHit hit))
             {

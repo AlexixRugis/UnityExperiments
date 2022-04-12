@@ -6,6 +6,8 @@ namespace ARTech.GameFramework
     {
         float Speed { get; set; }
         Vector3 CurrentVelocity { get; }
+        IArea Area { get; set; }
+
         bool TryMove(Vector3? position);
         bool Teleport(Vector3? position);
         void ClearPath();

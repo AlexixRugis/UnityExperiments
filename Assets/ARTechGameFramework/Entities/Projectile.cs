@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace ARTech.GameFramework
 {
-    public abstract class Projectile : Entity, IProjectile
+    public abstract class Projectile : TransformableObject, IProjectile
     {
         [SerializeField] private float _speed = 5f;
         [SerializeField] private float _damage = 10f;
@@ -22,6 +23,8 @@ namespace ARTech.GameFramework
         public float HitCheckRadius => _hitCheckRadius;
         public LayerMask HitMask => _hitMask;
 
+        public Predicate<IHealth> DamageableTypesPredicate { get; set; } = h => true;
+
         public void Launch(Vector3 direction)
         {
             _launchTime = Time.time;
@@ -29,7 +32,7 @@ namespace ARTech.GameFramework
             Launched = true;
         }
 
-        protected override void OnLifeUpdate()
+        private void Update()
         {
             if (Launched)
             {
@@ -56,12 +59,8 @@ namespace ARTech.GameFramework
         protected abstract void HandleMovement();
         protected abstract void HandleHit();
 
-        protected override void OnDrawGizmosSelected()
+        private void OnDrawGizmosSelected()
         {
-            base.OnDrawGizmosSelected();
-
-            if (!DebugEnabled) return;
-
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(Position, _hitCheckRadius);
         }

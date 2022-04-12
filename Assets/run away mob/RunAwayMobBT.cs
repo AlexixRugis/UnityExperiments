@@ -29,7 +29,7 @@ namespace Mobs
         {
             Node root = new Selector(new List<Node>()
             {
-                new AvoidTypesNode(this, _agent, 5f, new[] { typeof(Player) }, _runSpeed),
+                new AvoidTypesNode(this, _agent, 5f, e => e is IPlayer, _runSpeed),
                 new WanderAroundNode(this, _agent, _patrolDistance, _patrolSpeed, _restTime)
             });
 
