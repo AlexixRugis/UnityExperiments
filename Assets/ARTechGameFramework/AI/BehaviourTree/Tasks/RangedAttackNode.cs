@@ -4,7 +4,7 @@ namespace ARTech.GameFramework.AI
 {
     public class RangedAttackNode : Node
     {
-        private readonly ILivingEntity _entity;
+        private readonly INPC _host;
         private readonly IMovement _agent;
         private readonly IRangedAttackHandler _handler;
         private readonly float _movementSpeed;
@@ -16,11 +16,11 @@ namespace ARTech.GameFramework.AI
         private float _lastAttackTime;
         private float _lastDodgeTime;
 
-        public RangedAttackNode(ILivingEntity entity, IMovement agent, IRangedAttackHandler handler,
+        public RangedAttackNode(INPC host, IMovement agent, IRangedAttackHandler handler,
             float movementSpeed, float stoppingDistance,
             float dodgeDistance, float dodgeCooldown, float cooldown)
         {
-            _entity = entity;
+            _host = host;
             _agent = agent;
             _handler = handler;
             _movementSpeed = movementSpeed;
@@ -31,13 +31,14 @@ namespace ARTech.GameFramework.AI
 
             _lastAttackTime = 0;
         }
+
         public override NodeState Evaluate()
         {
-            IHealth target = _entity.Target;
+            ICharacter target = _host.BattleTarget;
             if (target == null) return NodeState.Failure;
 
-            float distance = (_entity.Position - target.Position).magnitude;
-            bool canSeeTarget = _entity.CanSee(target);
+            float distance = (_host.Position - target.Position).magnitude;
+            bool canSeeTarget = _host.CanSee(target);
 
             if (distance <= _stoppingDistance + 3f)
             {
@@ -51,7 +52,7 @@ namespace ARTech.GameFramework.AI
                     if (!_agent.HasPath())
                     {
                         _agent.TryMove(
-                            _agent.GetRandomPositionAround(_entity.Position, _dodgeDistance)
+                            _host.GetRandomPositionAround(_dodgeDistance)
                         );
                     } else
                     {
@@ -63,7 +64,7 @@ namespace ARTech.GameFramework.AI
             {
                 _agent.Speed = _movementSpeed;
 
-                Vector3 targetPosition = Vector3.Lerp(_entity.Position, target.Position, 1f - (_stoppingDistance / distance));
+                Vector3 targetPosition = Vector3.Lerp(_host.Position, target.Position, 1f - (_stoppingDistance / distance));
 
                 _agent.TryMove(targetPosition);
             }

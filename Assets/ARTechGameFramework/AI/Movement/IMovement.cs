@@ -4,17 +4,14 @@ namespace ARTech.GameFramework
 {
     public interface IMovement
     {
+        ICharacter Character { get; }
         float Speed { get; set; }
         Vector3 CurrentVelocity { get; }
-        IArea Area { get; set; }
 
         bool TryMove(Vector3? position);
         bool Teleport(Vector3? position);
         void ClearPath();
         bool HasPath();
         float GetRemainingDistance();
-
-        Vector3? GetRandomPositionAround(Vector3 center, float radius);
-        Vector3? GetPositionFrom(Vector3 center, Vector3 from, float radius);
     }
 }

@@ -7,7 +7,7 @@ using ARTech.GameFramework.AI;
 namespace Mobs
 {
     [RequireComponent(typeof(AIAgent))]
-    public class RunAwayMobBT : LivingEntity
+    public class RunAwayMobBT : NPC
     {
         [SerializeField] private float _runSpeed;
         [SerializeField] private float _patrolSpeed;
@@ -38,8 +38,6 @@ namespace Mobs
 
         protected override void OnLifeUpdate()
         {
-            base.OnLifeUpdate();
-
             _tree.Tick();
         }
     }

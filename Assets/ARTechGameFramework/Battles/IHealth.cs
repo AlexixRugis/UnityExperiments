@@ -1,6 +1,6 @@
 namespace ARTech.GameFramework
 {
-    public interface IHealth : ITransformableObject
+    public interface IHealth : ITransform
     {
         void TakeDamage(float amount);
         float Health { get; set; }

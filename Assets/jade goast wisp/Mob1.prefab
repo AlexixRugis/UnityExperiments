@@ -83,20 +83,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debug: 1
-  _obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _entitiesMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _groundCheckDistance: 0
-  _dieTime: 0
   _isImmortal: 0
-  _eyeOffset: {x: 0, y: 0, z: 0}
-  _visionDistance: 15
-  _loseTargetDuration: 5
   _health: 100
   _maxHealth: 100
+  _visionDistance: 15
+  _agentRadius: 0.5
+  _obstaclesMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _loseTargetDuration: 5
   _patrolMovementDistance: 7
   _patrolMovementSpeed: 3
   _restTime: 2
@@ -165,7 +160,6 @@ MonoBehaviour:
   _obstaclesMask:
     serializedVersion: 2
     m_Bits: 1
-  _maxHeight: 6
   _stoppingDistance: 1
   _speed: 3
 --- !u!135 &893956380921695574

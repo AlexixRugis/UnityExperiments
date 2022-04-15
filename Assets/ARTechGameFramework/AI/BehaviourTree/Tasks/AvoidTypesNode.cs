@@ -5,19 +5,19 @@ namespace ARTech.GameFramework.AI
 {
     public class AvoidTypesNode : Node
     {
-        private readonly ILivingEntity _entity;
+        private readonly INPC _host;
         private readonly IMovement _agent;
-        private readonly float _checkDistance;
-        private readonly Predicate<IEntity> _match;
+        private readonly float _sqrCheckDistance;
+        private readonly Predicate<ICharacter> _match;
         private readonly float _runSpeed;
 
-        private IEntity _avoidTarget;
+        private ICharacter _avoidTarget;
 
-        public AvoidTypesNode(ILivingEntity entity, IMovement agent, float checkDistance, Predicate<IEntity> match, float runSpeed)
+        public AvoidTypesNode(INPC host, IMovement agent, float checkDistance, Predicate<ICharacter> match, float runSpeed)
         {
-            _entity = entity;
+            _host = host;
             _agent = agent;
-            _checkDistance = checkDistance;
+            _sqrCheckDistance = checkDistance * checkDistance;
             _match = match;
             _runSpeed = runSpeed;
         }
@@ -28,15 +28,23 @@ namespace ARTech.GameFramework.AI
             {
                 _agent.Speed = _runSpeed;
                 _agent.TryMove(
-                    _agent.GetPositionFrom(
-                        _entity.Position,
+                    _host.GetPositionFrom(
                         _avoidTarget.Position,
                         2f
                     )
                 );
             }
 
-            _avoidTarget = _entity.GetNearest(_checkDistance, _match);
+            ICharacter target = _host.GetNearest(_match);
+            if (target == null)
+            {
+                _avoidTarget = null;
+            }
+            else if ((_host.Position - target.Position).sqrMagnitude < _sqrCheckDistance)
+            {
+                _avoidTarget = target;
+            }
+
             return _avoidTarget != null ? NodeState.Running : NodeState.Failure;
         }
 

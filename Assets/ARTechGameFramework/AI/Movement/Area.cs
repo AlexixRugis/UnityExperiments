@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ARTech.GameFramework
@@ -8,12 +9,52 @@ namespace ARTech.GameFramework
     public class Area : MonoBehaviour, IArea
     {
         [SerializeField] private LayerMask _obstacleMask;
+        [SerializeField] private NPC _prefab;
+        [SerializeField] private int _maxSpawnCount;
+        [SerializeField] private int _spawnDuration;
+        [SerializeField] private Transform[] _spawnpoints;
 
         private Collider _collider;
+        private List<INPC> _npcs = new List<INPC>();
+
+        public IEnumerable<Vector3> Spawnpoints => _spawnpoints.Select(t => t.position);
+
+        public IEnumerable<INPC> NPCs => _npcs;
+
+        public int SpawnDuration { get => _spawnDuration; set => _spawnDuration = value; }
+        public int MaxSpawnCount { get => _maxSpawnCount; set => _maxSpawnCount = value; }
 
         private void Awake()
         {
             _collider = GetComponent<Collider>();
+        }
+
+        private void Start()
+        {
+            StartCoroutine(SpawnRountine());
+        }
+
+        private void Spawn(INPC prefab, Vector3 spawnpoint)
+        {
+            INPC npc = (INPC)Instantiate(prefab as Object, spawnpoint, Quaternion.identity);
+            npc.Area = this;
+
+            _npcs.Add(npc);
+        }
+
+        private IEnumerator SpawnRountine()
+        {
+            while (true)
+            {
+                _npcs.RemoveAll(n => n.IsRemoved);
+
+                if (_npcs.Count < MaxSpawnCount)
+                {
+                    Spawn(_prefab, _spawnpoints[Random.Range(0, _spawnpoints.Length)].position);
+                }
+
+                yield return new WaitForSeconds(SpawnDuration);
+            }
         }
 
         public Vector3? GetRandomPointAround(Vector3 center, float maxDistance, float agentRadius)
@@ -52,6 +93,15 @@ namespace ARTech.GameFramework
             );
 
             return position;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.green;
+            foreach (var spawnpoint in Spawnpoints)
+            {
+                Gizmos.DrawCube(spawnpoint, Vector3.one * 0.2f);
+            }
         }
     }
 }

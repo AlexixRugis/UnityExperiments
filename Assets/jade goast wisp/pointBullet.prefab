@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8401232043621938674}
   - component: {fileID: 8401232043621938685}
   - component: {fileID: 5452393351701661545}
+  - component: {fileID: 3444881499863392891}
   m_Layer: 6
   m_Name: pointBullet
   m_TagString: Untagged
@@ -111,18 +112,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debug: 1
-  _obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _entitiesMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _groundCheckDistance: 0
-  _dieTime: 0
   _speed: 5
   _damage: 50
-  _lifetime: 10
   _hitCheckRadius: 0.25
   _hitMask:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &3444881499863392891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401232043621938687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f489ac6045d2441b747bca2c2debd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyOnOwnerDie: 0
+  _lifetime: 5

@@ -35,6 +35,8 @@ namespace Mobs
 
         public bool IsRemoved => false;
 
+        public float SpawnTime { get; private set; }
+
         private float _chaseStartTime;
         private float _lastHealTime;
 
@@ -155,6 +157,7 @@ namespace Mobs
         protected virtual void Awake()
         {
             Health = MaxHealth;
+            SpawnTime = Time.time;
         }
 
         protected virtual void Start()

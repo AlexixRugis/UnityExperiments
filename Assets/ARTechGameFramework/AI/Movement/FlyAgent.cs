@@ -4,14 +4,13 @@ using UnityEngine;
 
 namespace ARTech.GameFramework
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody), typeof(ICharacter))]
     public class FlyAgent : MonoBehaviour, IMovement
     {
         [SerializeField] private float _radius;
         [SerializeField] private LayerMask _obstaclesMask;
         [SerializeField] private float _stoppingDistance;
         [SerializeField] private float _speed;
-        [SerializeField] private Area _area;
 
         private Rigidbody _rigidbody;
 
@@ -21,11 +20,12 @@ namespace ARTech.GameFramework
 
         public Vector3 CurrentVelocity => _rigidbody.velocity;
 
-        public IArea Area { get => _area; set => _area = value as Area; }
+        public ICharacter Character { get; private set; }
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            Character = GetComponent<ICharacter>();
         }
 
         private void FixedUpdate()
@@ -44,31 +44,6 @@ namespace ARTech.GameFramework
         public void ClearPath()
         {
             _target = null;
-        }
-
-        public Vector3? GetPositionFrom(Vector3 center, Vector3 from, float radius)
-        {
-            Vector3 directionNormalized = (center - from).normalized;
-
-            if (!Physics.SphereCast(transform.position, _radius, directionNormalized, out RaycastHit hit, radius, _obstaclesMask))
-            {
-                return center + directionNormalized * radius;
-            }
-            else
-            {
-                float distance = hit.distance - _radius;
-                if (distance <= 0)
-                {
-                    return center;
-                }
-
-                return center + directionNormalized * (hit.distance - _radius);
-            }
-        }
-
-        public Vector3? GetRandomPositionAround(Vector3 center, float radius)
-        {
-            return _area.GetRandomPointAround(center, radius, _radius);
         }
 
         public float GetRemainingDistance()

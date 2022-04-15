@@ -5,21 +5,21 @@ namespace ARTech.GameFramework.AI
 {
     public class TeleportFromTypesNode : Node
     {
-        private readonly ILivingEntity _entity;
+        private readonly INPC _host;
         private readonly IMovement _agent;
         private readonly float _cooldown;
-        private readonly float _checkRadius;
-        private readonly Predicate<IEntity> _match;
+        private readonly float _sqrCheckRadius;
+        private readonly Predicate<ICharacter> _match;
         private readonly float _distance;
 
         private float _lastTeleportTime;
 
-        public TeleportFromTypesNode(ILivingEntity entity, IMovement agent, float checkRadius, Predicate<IEntity> match, float cooldown, float distance)
+        public TeleportFromTypesNode(INPC host, IMovement agent, float checkRadius, Predicate<ICharacter> match, float cooldown, float distance)
         {
-            _entity = entity;
+            _host = host;
             _agent = agent;
             _cooldown = cooldown;
-            _checkRadius = checkRadius;
+            _sqrCheckRadius = checkRadius * checkRadius;
             _match = match;
             _distance = distance;
 
@@ -33,15 +33,15 @@ namespace ARTech.GameFramework.AI
                 return NodeState.Failure;
             }
 
-            IEntity target = _entity.GetNearest(_checkRadius, _match);
+            ICharacter target = _host.GetNearest(_match);
 
-            if (target == null)
+            if (target == null || (_host.Position - target.Position).sqrMagnitude < _sqrCheckRadius)
             {
                 return NodeState.Failure;
             }
 
             if (_agent.Teleport(
-                _agent.GetRandomPositionAround(target.Position, _distance)
+                _host.GetRandomPositionAround(_distance)
             ))
             {
                 _lastTeleportTime = Time.time;

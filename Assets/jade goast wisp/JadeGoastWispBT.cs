@@ -8,7 +8,7 @@ using ARTech.GameFramework;
 namespace Mobs
 {
     [RequireComponent(typeof(ARTech.GameFramework.IMovement))]
-    public class JadeGoastWispBT : LivingEntity
+    public class JadeGoastWispBT : NPC
     {
         [Header("Patrol")]
         [SerializeField] private float _patrolMovementDistance;
@@ -43,8 +43,6 @@ namespace Mobs
 
         protected override void OnLifeUpdate()
         {
-            base.OnLifeUpdate();
-
             _tree.Tick();
         } 
 
@@ -52,7 +50,7 @@ namespace Mobs
         {
             var attackHandler = GetComponent<IRangedAttackHandler>();
             Node root = new Selector(new List<Node>() {
-                    new AngerTypesNode(this, e => e is IPlayer, _attackCheckDistance),
+                    new AngerTypesNode(this, e => e is IPlayer),
 
                     new TeleportFromTypesNode(this, _agent, _teleportCheckRadius, e => e is IPlayer, _teleportCooldown, _teleportMovementDistance),
                     new AvoidTypesNode(this, _agent, _runAwayCheckRadius, e => e is IPlayer, _runAwaySpeed),
@@ -65,8 +63,6 @@ namespace Mobs
 
         protected override void OnDrawGizmosSelected()
         {
-            base.OnDrawGizmosSelected();
-
             if (!DebugEnabled) return;
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _attackCheckDistance);
