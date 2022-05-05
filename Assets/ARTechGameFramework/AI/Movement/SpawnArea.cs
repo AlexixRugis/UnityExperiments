@@ -6,20 +6,20 @@ using UnityEngine;
 namespace ARTech.GameFramework
 {
     [RequireComponent(typeof(Collider))]
-    public class Area : MonoBehaviour, IArea
+    public class SpawnArea : MonoBehaviour
     {
         [SerializeField] private LayerMask _obstacleMask;
-        [SerializeField] private NPC _prefab;
+        [SerializeField] private AICharacter _prefab;
         [SerializeField] private int _maxSpawnCount;
         [SerializeField] private int _spawnDuration;
         [SerializeField] private Transform[] _spawnpoints;
 
         private Collider _collider;
-        private List<INPC> _npcs = new List<INPC>();
+        private List<AICharacter> _npcs = new List<AICharacter>();
 
         public IEnumerable<Vector3> Spawnpoints => _spawnpoints.Select(t => t.position);
 
-        public IEnumerable<INPC> NPCs => _npcs;
+        public IEnumerable<AICharacter> NPCs => _npcs;
 
         public int SpawnDuration { get => _spawnDuration; set => _spawnDuration = value; }
         public int MaxSpawnCount { get => _maxSpawnCount; set => _maxSpawnCount = value; }
@@ -34,9 +34,9 @@ namespace ARTech.GameFramework
             StartCoroutine(SpawnRountine());
         }
 
-        private void Spawn(INPC prefab, Vector3 spawnpoint)
+        private void Spawn(AICharacter prefab, Vector3 spawnpoint)
         {
-            INPC npc = (INPC)Instantiate(prefab as Object, spawnpoint, Quaternion.identity);
+            AICharacter npc = Instantiate(prefab, spawnpoint, Quaternion.identity);
             npc.Area = this;
 
             _npcs.Add(npc);
@@ -46,7 +46,7 @@ namespace ARTech.GameFramework
         {
             while (true)
             {
-                _npcs.RemoveAll(n => n.IsRemoved);
+                _npcs.RemoveAll(n => !n.IsAlive);
 
                 if (_npcs.Count < MaxSpawnCount)
                 {

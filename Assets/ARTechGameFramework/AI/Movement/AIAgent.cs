@@ -17,6 +17,8 @@ namespace ARTech.GameFramework.AI
 
         public ICharacter Character { get; private set; }
 
+        public float AgentRadius => _agent.radius;
+
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();

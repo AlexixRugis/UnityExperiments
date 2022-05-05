@@ -7,38 +7,37 @@ using ARTech.GameFramework.AI;
 namespace Mobs
 {
     [RequireComponent(typeof(AIAgent))]
-    public class RunAwayMobBT : NPC
+    public class RunAwayMobBT : AICharacter
     {
         [SerializeField] private float _runSpeed;
         [SerializeField] private float _patrolSpeed;
         [SerializeField] private float _patrolDistance;
         [SerializeField] private float _restTime;
 
-        private AIAgent _agent;
-
         private BehaviorTree _tree = new BehaviorTree();
 
-        protected void Awake()
+        protected override void HandleSpawn()
         {
-            _agent = GetComponent<AIAgent>();
+            base.HandleSpawn();
 
             SetupTree();
         }
 
-        private void SetupTree()
+        protected override void HandleLifeUpdate()
+        {
+            base.HandleLifeUpdate();
+            _tree.Tick();
+        }
+
+        protected void SetupTree()
         {
             Node root = new Selector(new List<Node>()
             {
-                new AvoidTypesNode(this, _agent, 5f, e => e is IPlayer, _runSpeed),
-                new WanderAroundNode(this, _agent, _patrolDistance, _patrolSpeed, _restTime)
+                new AvoidTypesNode(this, 5f, e => e is Player, _runSpeed),
+                new WanderAroundNode(this, _patrolDistance, _patrolSpeed, _restTime)
             });
 
             _tree.SetNodes(root);
-        }
-
-        protected override void OnLifeUpdate()
-        {
-            _tree.Tick();
         }
     }
 }

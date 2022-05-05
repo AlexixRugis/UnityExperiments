@@ -17,7 +17,7 @@ namespace ARTech.GameFramework
         public float HitCheckRadius => _hitCheckRadius;
         public LayerMask HitMask => _hitMask;
 
-        public Predicate<IHealth> DamageableTypesPredicate { get; set; } = h => true;
+        public Predicate<IDamageable> DamageableTypesPredicate { get; set; } = h => true;
         public ICharacter Shooter { get; set; }
 
         public void Launch(Vector3 direction)

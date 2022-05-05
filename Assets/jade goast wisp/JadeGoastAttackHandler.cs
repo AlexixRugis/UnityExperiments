@@ -14,30 +14,30 @@ namespace Mobs
         [SerializeField] private float _bulletSpeed;
         [SerializeField] private float _bulletSpawnDuration;
 
-        private ICharacter _host;
-        private ICharacter _target;
+        private AICharacter _host;
+        private AICharacter _target;
         private Vector3 _lastTargetPosition;
 
         private void Awake()
         {
-            _host = GetComponent<INPC>();
+            _host = GetComponent<AICharacter>();
         }
 
         private void Update()
         {
-            if (_target != null && _host.CanSee(_target))
+            if (_target != null && _host.CanSee(_target, float.MaxValue))
             {
-                _lastTargetPosition = _target.Position;
+                _lastTargetPosition = _target.transform.position;
                 _bulletHolder.LookAt(_lastTargetPosition);
             }
         }
 
-        public void AttackRanged(ICharacter damageable)
+        public void AttackRanged(AICharacter damageable)
         {
             StartCoroutine(Attack(damageable));
         }
 
-        private IEnumerator Attack(ICharacter target)
+        private IEnumerator Attack(AICharacter target)
         {
             _target = target;
             Projectile[] bullets = new Projectile[_bulletPositions.Length];

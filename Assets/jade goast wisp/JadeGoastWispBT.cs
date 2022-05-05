@@ -1,14 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using ARTech.GameFramework.AI;
 using ARTech.GameFramework;
 
 namespace Mobs
 {
-    [RequireComponent(typeof(ARTech.GameFramework.IMovement))]
-    public class JadeGoastWispBT : NPC
+    [RequireComponent(typeof(IMovement))]
+    public class JadeGoastWispBT : AICharacter
     {
         [Header("Patrol")]
         [SerializeField] private float _patrolMovementDistance;
@@ -28,20 +26,21 @@ namespace Mobs
         [Header("Avoid")]
         [SerializeField] private float _runAwayCheckRadius;
         [SerializeField] private float _runAwaySpeed;
-        
-
-        private ARTech.GameFramework.IMovement _agent;
 
         private BehaviorTree _tree = new BehaviorTree();
 
         protected void Awake()
         {
-            _agent = GetComponent<ARTech.GameFramework.IMovement>();
-
             SetupTree();
         }
 
-        protected override void OnLifeUpdate()
+        protected override void HandleSpawn()
+        {
+            base.HandleSpawn();
+            SetupTree();
+        }
+
+        protected override void HandleLifeUpdate()
         {
             _tree.Tick();
         } 
@@ -50,20 +49,19 @@ namespace Mobs
         {
             var attackHandler = GetComponent<IRangedAttackHandler>();
             Node root = new Selector(new List<Node>() {
-                    new AngerTypesNode(this, e => e is IPlayer),
+                    new AngerTypesNode(this, e => e is Player, _attackCheckDistance),
 
-                    new TeleportFromTypesNode(this, _agent, _teleportCheckRadius, e => e is IPlayer, _teleportCooldown, _teleportMovementDistance),
-                    new AvoidTypesNode(this, _agent, _runAwayCheckRadius, e => e is IPlayer, _runAwaySpeed),
-                    new RangedAttackNode(this, _agent, attackHandler, _attackMovementSpeed, _attackStopDistance, _attackDodgeDistance, _attackDodgeCooldown, _attackCooldown),
-                    new WanderAroundNode(this, _agent, _patrolMovementDistance, _patrolMovementSpeed, _restTime)
+                    new TeleportFromTypesNode(this, _teleportCheckRadius, e => e is Player, _teleportCooldown, _teleportMovementDistance),
+                    new AvoidTypesNode(this, _runAwayCheckRadius, e => e is Player, _runAwaySpeed),
+                    new RangedAttackNode(this, attackHandler, _attackMovementSpeed, _attackStopDistance, _attackDodgeDistance, _attackDodgeCooldown, _attackCooldown),
+                    new WanderAroundNode(this, _patrolMovementDistance, _patrolMovementSpeed, _restTime)
                 });
 
             _tree.SetNodes(root);
         }
 
-        protected override void OnDrawGizmosSelected()
+        protected void OnDrawGizmosSelected()
         {
-            if (!DebugEnabled) return;
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _attackCheckDistance);
             Gizmos.color = Color.yellow;

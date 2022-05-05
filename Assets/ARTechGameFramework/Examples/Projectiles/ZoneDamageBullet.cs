@@ -14,7 +14,7 @@ namespace ARTech.GameFramework.Examples
 
             foreach (var collider in colliders)
             {
-                IHealth damagable = collider.GetComponent<IHealth>();
+                IDamageable damagable = collider.GetComponent<IDamageable>();
                 if (damagable == null || damagable == Shooter) continue;
 
                 if (DamageableTypesPredicate.Invoke(damagable))

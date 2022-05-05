@@ -367,6 +367,12 @@ Transform:
   m_Father: {fileID: 797615295}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &619216210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3662340455669421323, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
+    type: 3}
+  m_PrefabInstance: {fileID: 3662340456382820790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &677379101
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +585,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3662340456382820790}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &797615298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619216210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e07c82a82e8c64db0c8d0435f6d5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _prefab: {fileID: 893956380921695573, guid: fd61870d81544674c9e2f355d2e20707, type: 3}
+  _maxSpawnCount: 4
+  _spawnDuration: 3
+  _spawnpoints:
+  - {fileID: 677379102}
+  - {fileID: 428628218}
+  - {fileID: 543221354}
 --- !u!1 &816590638
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &816590640
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -691,16 +719,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444e0c257563cf842af27b90c00ba6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debug: 1
-  _isImmortal: 0
-  _health: 100
-  _maxHealth: 100
-  _visionDistance: 0
-  _agentRadius: 0
-  _obstaclesMask:
+  maxHealth:
+    baseValue: 100
+  protection:
+    baseValue: 100
+  charactersMask:
     serializedVersion: 2
-    m_Bits: 0
-  _loseTargetDuration: 0
+    m_Bits: 2147483647
+  obstaclesMask:
+    serializedVersion: 2
+    m_Bits: 1
+  OnDead:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _runSpeed: 5
   _patrolSpeed: 3
   _patrolDistance: 4
@@ -867,11 +901,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45626cc27e0fe7429854a2bf35afdaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debug: 1
-  _isImmortal: 0
-  _health: 100
-  _maxHealth: 100
-  _visionDistance: 0
+  maxHealth:
+    baseValue: 0
+  protection:
+    baseValue: 0
+  charactersMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstaclesMask:
+    serializedVersion: 2
+    m_Bits: 0
+  OnDead:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,7 +1786,8 @@ PrefabInstance:
       propertyPath: _spawnpoints.Array.data[2]
       value: 
       objectReference: {fileID: 543221354}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3662340455669421430, guid: 17b1a1fad065bf24fb31efbf5a2f6b04, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 17b1a1fad065bf24fb31efbf5a2f6b04, type: 3}
 --- !u!1001 &8675151745568231586
 PrefabInstance:

@@ -4,7 +4,7 @@ namespace ARTech.GameFramework.AI
 {
     public class WanderAroundNode : Node
     {
-        private readonly INPC _host;
+        private readonly AICharacter _host;
         private readonly IMovement _agent;
         private readonly float _patrolDistance;
         private readonly float _patrolSpeed;
@@ -13,10 +13,10 @@ namespace ARTech.GameFramework.AI
         private float _restStartTime;
 
 
-        public WanderAroundNode(INPC host, IMovement agent, float patrolDistance, float speed, float restDuration)
+        public WanderAroundNode(AICharacter host, float patrolDistance, float speed, float restDuration)
         {
             _host = host;
-            _agent = agent;
+            _agent = host.MovementController;
             _patrolDistance = patrolDistance;
             _patrolSpeed = speed;
             _restDuration = restDuration;
@@ -42,7 +42,7 @@ namespace ARTech.GameFramework.AI
                 if (_agent.TryMove(_host.GetRandomPositionAround(Random.Range(_patrolDistance * 0.5f, _patrolDistance)))) {
                     _agent.Speed = _patrolSpeed;
                     return NodeState.Running;
-                } else if (_host.Area.GetDistance(_host.Position) > _patrolDistance)
+                } else if (_host.Area.GetDistance(_host.transform.position) > _patrolDistance)
                 {
                     _agent.Teleport(_host.Area.GetRandomPointIn());
                 }

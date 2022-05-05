@@ -4,7 +4,7 @@ namespace ARTech.GameFramework.AI
 {
     public class RangedAttackNode : Node
     {
-        private readonly INPC _host;
+        private readonly AICharacter _host;
         private readonly IMovement _agent;
         private readonly IRangedAttackHandler _handler;
         private readonly float _movementSpeed;
@@ -16,12 +16,12 @@ namespace ARTech.GameFramework.AI
         private float _lastAttackTime;
         private float _lastDodgeTime;
 
-        public RangedAttackNode(INPC host, IMovement agent, IRangedAttackHandler handler,
+        public RangedAttackNode(AICharacter host, IRangedAttackHandler handler,
             float movementSpeed, float stoppingDistance,
             float dodgeDistance, float dodgeCooldown, float cooldown)
         {
             _host = host;
-            _agent = agent;
+            _agent = host.MovementController;
             _handler = handler;
             _movementSpeed = movementSpeed;
             _stoppingDistance = stoppingDistance;
@@ -34,11 +34,11 @@ namespace ARTech.GameFramework.AI
 
         public override NodeState Evaluate()
         {
-            ICharacter target = _host.BattleTarget;
+            AICharacter target = _host.BattleTarget;
             if (target == null) return NodeState.Failure;
 
-            float distance = (_host.Position - target.Position).magnitude;
-            bool canSeeTarget = _host.CanSee(target);
+            float distance = (_host.transform.position - target.transform.position).magnitude;
+            bool canSeeTarget = _host.CanSee(target, _stoppingDistance + 3f);
 
             if (distance <= _stoppingDistance + 3f)
             {
@@ -64,7 +64,7 @@ namespace ARTech.GameFramework.AI
             {
                 _agent.Speed = _movementSpeed;
 
-                Vector3 targetPosition = Vector3.Lerp(_host.Position, target.Position, 1f - (_stoppingDistance / distance));
+                Vector3 targetPosition = Vector3.Lerp(_host.transform.position, target.transform.position, 1f - (_stoppingDistance / distance));
 
                 _agent.TryMove(targetPosition);
             }

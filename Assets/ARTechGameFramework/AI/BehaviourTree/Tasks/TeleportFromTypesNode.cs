@@ -5,21 +5,21 @@ namespace ARTech.GameFramework.AI
 {
     public class TeleportFromTypesNode : Node
     {
-        private readonly INPC _host;
+        private readonly AICharacter _host;
         private readonly IMovement _agent;
         private readonly float _cooldown;
-        private readonly float _sqrCheckRadius;
-        private readonly Predicate<ICharacter> _match;
+        private readonly float _checkRadius;
+        private readonly Predicate<AICharacter> _match;
         private readonly float _distance;
 
         private float _lastTeleportTime;
 
-        public TeleportFromTypesNode(INPC host, IMovement agent, float checkRadius, Predicate<ICharacter> match, float cooldown, float distance)
+        public TeleportFromTypesNode(AICharacter host, float checkRadius, Predicate<AICharacter> match, float cooldown, float distance)
         {
             _host = host;
-            _agent = agent;
+            _agent = host.MovementController;
             _cooldown = cooldown;
-            _sqrCheckRadius = checkRadius * checkRadius;
+            _checkRadius = checkRadius;
             _match = match;
             _distance = distance;
 
@@ -33,9 +33,9 @@ namespace ARTech.GameFramework.AI
                 return NodeState.Failure;
             }
 
-            ICharacter target = _host.GetNearest(_match);
+            AICharacter target = _host.GetNearest(_match, _checkRadius);
 
-            if (target == null || (_host.Position - target.Position).sqrMagnitude < _sqrCheckRadius)
+            if (target == null)
             {
                 return NodeState.Failure;
             }

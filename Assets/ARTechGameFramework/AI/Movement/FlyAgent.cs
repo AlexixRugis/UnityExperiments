@@ -22,6 +22,8 @@ namespace ARTech.GameFramework
 
         public ICharacter Character { get; private set; }
 
+        public float AgentRadius => _radius;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();

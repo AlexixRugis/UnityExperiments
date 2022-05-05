@@ -82,16 +82,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21388f3a9eb8e5e469c41b930fbea536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debug: 1
-  _isImmortal: 0
-  _health: 100
-  _maxHealth: 100
-  _visionDistance: 15
-  _agentRadius: 0.5
-  _obstaclesMask:
+  maxHealth:
+    baseValue: 0
+  protection:
+    baseValue: 0
+  charactersMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  obstaclesMask:
     serializedVersion: 2
     m_Bits: 1
-  _loseTargetDuration: 5
+  OnDead:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _patrolMovementDistance: 7
   _patrolMovementSpeed: 3
   _restTime: 2

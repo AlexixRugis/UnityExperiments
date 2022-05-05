@@ -1,6 +1,6 @@
 namespace ARTech.GameFramework
 {
-    public class Player : Character, IPlayer
+    public class Player : AICharacter
     {
     }
 }

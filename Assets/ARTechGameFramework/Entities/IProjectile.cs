@@ -9,7 +9,7 @@ namespace ARTech.GameFramework
         ICharacter Shooter { get; set; }
         float Speed { get; set; }
         float Damage { get; set; }
-        Predicate<IHealth> DamageableTypesPredicate { get; set; }
+        Predicate<IDamageable> DamageableTypesPredicate { get; set; }
         bool Launched { get; }
     }
 }
