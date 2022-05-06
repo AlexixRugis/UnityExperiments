@@ -7,7 +7,7 @@ using ARTech.GameFramework.AI;
 namespace Mobs
 {
     [RequireComponent(typeof(AIAgent))]
-    public class RunAwayMobBT : AICharacter
+    public class RunAwayMobBT : Character
     {
         [SerializeField] private float _runSpeed;
         [SerializeField] private float _patrolSpeed;

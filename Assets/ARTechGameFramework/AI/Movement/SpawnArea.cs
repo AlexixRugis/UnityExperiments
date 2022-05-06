@@ -9,17 +9,17 @@ namespace ARTech.GameFramework
     public class SpawnArea : MonoBehaviour
     {
         [SerializeField] private LayerMask _obstacleMask;
-        [SerializeField] private AICharacter _prefab;
+        [SerializeField] private Character _prefab;
         [SerializeField] private int _maxSpawnCount;
         [SerializeField] private int _spawnDuration;
         [SerializeField] private Transform[] _spawnpoints;
 
         private Collider _collider;
-        private List<AICharacter> _npcs = new List<AICharacter>();
+        private List<Character> _npcs = new List<Character>();
 
         public IEnumerable<Vector3> Spawnpoints => _spawnpoints.Select(t => t.position);
 
-        public IEnumerable<AICharacter> NPCs => _npcs;
+        public IEnumerable<Character> NPCs => _npcs;
 
         public int SpawnDuration { get => _spawnDuration; set => _spawnDuration = value; }
         public int MaxSpawnCount { get => _maxSpawnCount; set => _maxSpawnCount = value; }
@@ -34,9 +34,9 @@ namespace ARTech.GameFramework
             StartCoroutine(SpawnRountine());
         }
 
-        private void Spawn(AICharacter prefab, Vector3 spawnpoint)
+        private void Spawn(Character prefab, Vector3 spawnpoint)
         {
-            AICharacter npc = Instantiate(prefab, spawnpoint, Quaternion.identity);
+            Character npc = Instantiate(prefab, spawnpoint, Quaternion.identity);
             npc.Area = this;
 
             _npcs.Add(npc);
@@ -57,32 +57,17 @@ namespace ARTech.GameFramework
             }
         }
 
-        public Vector3? GetRandomPointAround(Vector3 center, float maxDistance, float agentRadius)
-        {
-            Vector3 direction = Random.onUnitSphere * maxDistance;
-            Vector3 directionNormalized = direction.normalized;
-
-            if (!Physics.SphereCast(transform.position, agentRadius, directionNormalized, out RaycastHit hit, maxDistance, _obstacleMask))
-            {
-                Vector3 position = _collider.ClosestPoint(center + direction);
-
-                if (Vector3.Distance(position, center) >  maxDistance)
-                {
-                    return null;
-                }
-
-                return position;
-            }
-
-            return null;
-        }
-
         public float GetDistance(Vector3 from)
         {
             return Vector3.Distance(_collider.ClosestPoint(from), from);
         }
 
-        public Vector3? GetRandomPointIn()
+        public Vector3 GetClosestPoint(Vector3 to)
+        {
+            return _collider.ClosestPoint(to);
+        }
+
+        public Vector3 GetRandomPointIn()
         {
             Vector3 position = _collider.ClosestPoint(
                 new Vector3(

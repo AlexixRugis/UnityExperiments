@@ -1,9 +1,6 @@
 namespace ARTech.GameFramework.Examples
 {
-    public class Dummy : NPC
+    public class Dummy : Character
     {
-        protected override void OnLifeUpdate()
-        {
-        }
     }
 }

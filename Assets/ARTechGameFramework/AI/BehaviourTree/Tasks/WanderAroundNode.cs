@@ -4,7 +4,7 @@ namespace ARTech.GameFramework.AI
 {
     public class WanderAroundNode : Node
     {
-        private readonly AICharacter _host;
+        private readonly Character _host;
         private readonly IMovement _agent;
         private readonly float _patrolDistance;
         private readonly float _patrolSpeed;
@@ -13,7 +13,7 @@ namespace ARTech.GameFramework.AI
         private float _restStartTime;
 
 
-        public WanderAroundNode(AICharacter host, float patrolDistance, float speed, float restDuration)
+        public WanderAroundNode(Character host, float patrolDistance, float speed, float restDuration)
         {
             _host = host;
             _agent = host.MovementController;

@@ -16,12 +16,12 @@ namespace ARTech.GameFramework.Examples
                 }
             }
 
-            Remove();
+            Destroy(gameObject);
         }
 
         protected override void HandleMovement()
         {
-            transform.LookAt(Position + Direction);
+            transform.LookAt(transform.position + Direction);
             transform.Translate(0, 0, Speed * Time.deltaTime);
         }
     }

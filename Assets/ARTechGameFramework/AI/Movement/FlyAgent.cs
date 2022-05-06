@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ARTech.GameFramework
 {
-    [RequireComponent(typeof(Rigidbody), typeof(ICharacter))]
+    [RequireComponent(typeof(Rigidbody), typeof(Character))]
     public class FlyAgent : MonoBehaviour, IMovement
     {
         [SerializeField] private float _radius;
@@ -20,14 +20,14 @@ namespace ARTech.GameFramework
 
         public Vector3 CurrentVelocity => _rigidbody.velocity;
 
-        public ICharacter Character { get; private set; }
+        public Character Character { get; private set; }
 
         public float AgentRadius => _radius;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            Character = GetComponent<ICharacter>();
+            Character = GetComponent<Character>();
         }
 
         private void FixedUpdate()

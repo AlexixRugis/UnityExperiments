@@ -7,11 +7,11 @@ namespace ARTech.GameFramework.AI
 {
     public class AngerTypesNode : Node
     {
-        private readonly AICharacter _host;
-        private readonly Predicate<AICharacter> _match;
+        private readonly Character _host;
+        private readonly Predicate<Character> _match;
         private readonly float _radius;
 
-        public AngerTypesNode(AICharacter host, Predicate<AICharacter> match, float radius)
+        public AngerTypesNode(Character host, Predicate<Character> match, float radius)
         {
             _host = host;
             _match = match;
@@ -22,7 +22,7 @@ namespace ARTech.GameFramework.AI
         {
             if (_host.BattleTarget != null) return NodeState.Failure;
 
-            AICharacter target = _host.GetNearest(_match, _radius);
+            Character target = _host.GetNearest(_match, _radius);
             if (target != null)
             {
                 _host.BattleTarget = target;

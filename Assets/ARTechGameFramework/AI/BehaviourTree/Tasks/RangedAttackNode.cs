@@ -4,7 +4,7 @@ namespace ARTech.GameFramework.AI
 {
     public class RangedAttackNode : Node
     {
-        private readonly AICharacter _host;
+        private readonly Character _host;
         private readonly IMovement _agent;
         private readonly IRangedAttackHandler _handler;
         private readonly float _movementSpeed;
@@ -16,7 +16,7 @@ namespace ARTech.GameFramework.AI
         private float _lastAttackTime;
         private float _lastDodgeTime;
 
-        public RangedAttackNode(AICharacter host, IRangedAttackHandler handler,
+        public RangedAttackNode(Character host, IRangedAttackHandler handler,
             float movementSpeed, float stoppingDistance,
             float dodgeDistance, float dodgeCooldown, float cooldown)
         {
@@ -34,7 +34,7 @@ namespace ARTech.GameFramework.AI
 
         public override NodeState Evaluate()
         {
-            AICharacter target = _host.BattleTarget;
+            Character target = _host.BattleTarget;
             if (target == null) return NodeState.Failure;
 
             float distance = (_host.transform.position - target.transform.position).magnitude;

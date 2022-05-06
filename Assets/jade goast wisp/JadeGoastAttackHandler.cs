@@ -14,13 +14,13 @@ namespace Mobs
         [SerializeField] private float _bulletSpeed;
         [SerializeField] private float _bulletSpawnDuration;
 
-        private AICharacter _host;
-        private AICharacter _target;
+        private Character _host;
+        private Character _target;
         private Vector3 _lastTargetPosition;
 
         private void Awake()
         {
-            _host = GetComponent<AICharacter>();
+            _host = GetComponent<Character>();
         }
 
         private void Update()
@@ -32,12 +32,12 @@ namespace Mobs
             }
         }
 
-        public void AttackRanged(AICharacter damageable)
+        public void AttackRanged(Character damageable)
         {
             StartCoroutine(Attack(damageable));
         }
 
-        private IEnumerator Attack(AICharacter target)
+        private IEnumerator Attack(Character target)
         {
             _target = target;
             Projectile[] bullets = new Projectile[_bulletPositions.Length];

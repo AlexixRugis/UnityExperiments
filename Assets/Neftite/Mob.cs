@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mobs
 {
-    public class Mob : MonoBehaviour, IHealth
+    public class Mob : MonoBehaviour, IDamageable
     {
         public enum AIState
         {

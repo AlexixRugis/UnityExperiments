@@ -5,15 +5,15 @@ namespace ARTech.GameFramework.AI
 {
     public class AvoidTypesNode : Node
     {
-        private readonly AICharacter _host;
+        private readonly Character _host;
         private readonly IMovement _agent;
         private readonly float _checkDistance;
-        private readonly Predicate<AICharacter> _match;
+        private readonly Predicate<Character> _match;
         private readonly float _runSpeed;
 
-        private AICharacter _avoidTarget;
+        private Character _avoidTarget;
 
-        public AvoidTypesNode(AICharacter host, float checkDistance, Predicate<AICharacter> match, float runSpeed)
+        public AvoidTypesNode(Character host, float checkDistance, Predicate<Character> match, float runSpeed)
         {
             _host = host;
             _agent = host.MovementController;
@@ -35,7 +35,7 @@ namespace ARTech.GameFramework.AI
                 );
             }
 
-            AICharacter target = _host.GetNearest(_match, _checkDistance);
+            Character target = _host.GetNearest(_match, _checkDistance);
             if (target == null)
             {
                 _avoidTarget = null;

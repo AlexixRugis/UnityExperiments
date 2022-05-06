@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 namespace ARTech.GameFramework.AI
 {
-    [RequireComponent(typeof(NavMeshAgent), typeof(ICharacter))]
+    [RequireComponent(typeof(NavMeshAgent), typeof(Character))]
     public class AIAgent : MonoBehaviour, IMovement
     {
         private NavMeshAgent _agent;
@@ -15,14 +15,14 @@ namespace ARTech.GameFramework.AI
 
         public Vector3 CurrentVelocity => _agent.velocity;
 
-        public ICharacter Character { get; private set; }
+        public Character Character { get; private set; }
 
         public float AgentRadius => _agent.radius;
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
-            Character = GetComponent<ICharacter>();
+            Character = GetComponent<Character>();
         }
 
         public void ClearPath()

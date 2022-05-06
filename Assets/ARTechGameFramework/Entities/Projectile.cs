@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ARTech.GameFramework
 {
-    public abstract class Projectile : TransformableObject, IProjectile
+    public abstract class Projectile : MonoBehaviour
     {
         [SerializeField] private float _speed = 5f;
         [SerializeField] private float _damage = 10f;
@@ -18,7 +18,7 @@ namespace ARTech.GameFramework
         public LayerMask HitMask => _hitMask;
 
         public Predicate<IDamageable> DamageableTypesPredicate { get; set; } = h => true;
-        public ICharacter Shooter { get; set; }
+        public Character Shooter { get; set; }
 
         public void Launch(Vector3 direction)
         {
@@ -28,7 +28,7 @@ namespace ARTech.GameFramework
 
         private void Update()
         {
-            if (!IsRemoved && Launched)
+            if (Launched)
             {
                 HandleUpdate();
             }
@@ -51,7 +51,7 @@ namespace ARTech.GameFramework
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(Position, _hitCheckRadius);
+            Gizmos.DrawWireSphere(transform.position, _hitCheckRadius);
         }
     }
 }
