@@ -12,12 +12,12 @@ namespace ARTech.GameFramework
         [SerializeField] private Character _prefab;
         [SerializeField] private int _maxSpawnCount;
         [SerializeField] private int _spawnDuration;
-        [SerializeField] private Transform[] _spawnpoints;
+        [SerializeField] private Spawnpoint[] _spawnpoints;
 
         private Collider _collider;
         private List<Character> _npcs = new List<Character>();
 
-        public IEnumerable<Vector3> Spawnpoints => _spawnpoints.Select(t => t.position);
+        public IEnumerable<Vector3> Spawnpoints => _spawnpoints.Select(t => t.Position);
 
         public IEnumerable<Character> NPCs => _npcs;
 
@@ -50,7 +50,7 @@ namespace ARTech.GameFramework
 
                 if (_npcs.Count < MaxSpawnCount)
                 {
-                    Spawn(_prefab, _spawnpoints[Random.Range(0, _spawnpoints.Length)].position);
+                    Spawn(_prefab, _spawnpoints[Random.Range(0, _spawnpoints.Length)].Position);
                 }
 
                 yield return new WaitForSeconds(SpawnDuration);
