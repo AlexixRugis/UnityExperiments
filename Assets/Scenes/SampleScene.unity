@@ -292,6 +292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3662340455669421323, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3662340455669421430, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
         type: 3}
       propertyPath: _prefab
@@ -702,6 +707,7 @@ MonoBehaviour:
     baseValue: 0
   protection:
     baseValue: 0
+  isImmortal: 1
   charactersMask:
     serializedVersion: 2
     m_Bits: 0
@@ -1553,6 +1559,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 893956380921695573, guid: fd61870d81544674c9e2f355d2e20707,
         type: 3}
+    - target: {fileID: 3662340455669421430, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
+        type: 3}
+      propertyPath: _maxSpawnCount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b1a1fad065bf24fb31efbf5a2f6b04, type: 3}
 --- !u!1001 &8675151745568231586

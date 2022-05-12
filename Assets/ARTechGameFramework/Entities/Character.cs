@@ -12,6 +12,7 @@ namespace ARTech.GameFramework
 
         [SerializeField] private Stat maxHealth;
         [SerializeField] private Stat protection;
+        [SerializeField] private bool isImmortal;
 
         [Header("Detection")]
         [SerializeField] private LayerMask charactersMask;
@@ -63,7 +64,7 @@ namespace ARTech.GameFramework
 
         public void TakeDamage(float amount)
         {
-            if (!IsAlive) return;
+            if (!IsAlive || isImmortal) return;
 
             amount = Mathf.Clamp(amount - protection.Value, Mathf.CeilToInt((float)amount * 0.2f), amount);
 

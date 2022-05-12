@@ -17,7 +17,7 @@ namespace ARTech.GameFramework.AI
         {
             _host = host;
             _agent = host.MovementController;
-            _checkDistance = checkDistance * checkDistance;
+            _checkDistance = checkDistance;
             _match = match;
             _runSpeed = runSpeed;
         }
@@ -35,15 +35,7 @@ namespace ARTech.GameFramework.AI
                 );
             }
 
-            Character target = _host.GetNearest(_match, _checkDistance);
-            if (target == null)
-            {
-                _avoidTarget = null;
-            }
-            else if ((_host.transform.position - target.transform.position).sqrMagnitude < _checkDistance)
-            {
-                _avoidTarget = target;
-            }
+            _avoidTarget = _host.GetNearest(_match, _checkDistance);
 
             return _avoidTarget != null ? NodeState.Running : NodeState.Failure;
         }

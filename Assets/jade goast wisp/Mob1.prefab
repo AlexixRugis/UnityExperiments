@@ -86,6 +86,7 @@ MonoBehaviour:
     baseValue: 0
   protection:
     baseValue: 0
+  isImmortal: 0
   charactersMask:
     serializedVersion: 2
     m_Bits: 2147483647
