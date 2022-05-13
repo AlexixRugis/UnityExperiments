@@ -11,8 +11,10 @@ namespace Mobs
     {
         [SerializeField] private float _runSpeed;
         [SerializeField] private float _patrolSpeed;
-        [SerializeField] private float _patrolDistance;
-        [SerializeField] private float _restTime;
+        [SerializeField] private float _minPatrolDistance;
+        [SerializeField] private float _maxPatrolDistance;
+        [SerializeField] private float _minPatrolDuration;
+        [SerializeField] private float _maxPatrolDuration;
 
         private BehaviorTree _tree = new BehaviorTree();
 
@@ -34,7 +36,7 @@ namespace Mobs
             Node root = new Selector(new List<Node>()
             {
                 new AvoidTypesNode(this, 5f, e => e is Player, _runSpeed),
-                new WanderAroundNode(this, _patrolDistance, _patrolSpeed, _restTime)
+                new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolSpeed, _minPatrolDistance, _maxPatrolDistance)
             });
 
             _tree.SetNodes(root);

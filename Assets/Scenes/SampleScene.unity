@@ -295,13 +295,13 @@ PrefabInstance:
     - target: {fileID: 3662340455669421323, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3662340455669421430, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
         type: 3}
       propertyPath: _prefab
       value: 
-      objectReference: {fileID: 358957350031656840, guid: cf1391de83f4883438a500f77bd4de09,
+      objectReference: {fileID: 8785001480236597266, guid: 1ca5903832e681e4095b731605d17985,
         type: 3}
     - target: {fileID: 3786324611044825849, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
         type: 3}
@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 915377758}
   - component: {fileID: 915377759}
   - component: {fileID: 915377760}
+  - component: {fileID: 915377761}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -704,10 +705,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth:
-    baseValue: 0
+    baseValue: 100
   protection:
     baseValue: 0
-  isImmortal: 1
+  isImmortal: 0
   charactersMask:
     serializedVersion: 2
     m_Bits: 0
@@ -720,6 +721,22 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!208 &915377761
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915377750}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1570,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area
       objectReference: {fileID: 0}
+    - target: {fileID: 3662340455669421323, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3662340455669421430, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
         type: 3}
       propertyPath: _prefab
@@ -1562,7 +1584,7 @@ PrefabInstance:
     - target: {fileID: 3662340455669421430, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
         type: 3}
       propertyPath: _maxSpawnCount
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b1a1fad065bf24fb31efbf5a2f6b04, type: 3}

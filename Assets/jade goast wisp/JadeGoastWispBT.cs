@@ -9,9 +9,11 @@ namespace Mobs
     public class JadeGoastWispBT : Character
     {
         [Header("Patrol")]
-        [SerializeField] private float _patrolMovementDistance;
+        [SerializeField] private float _minPatrolDistance;
+        [SerializeField] private float _maxPatrolDistance;
         [SerializeField] private float _patrolMovementSpeed;
-        [SerializeField] private float _restTime;
+        [SerializeField] private float _minPatrolDuration;
+        [SerializeField] private float _maxPatrolDuration;
         [Header("Attack")]
         [SerializeField] private float _attackCheckDistance;
         [SerializeField] private float _attackMovementSpeed;
@@ -28,11 +30,6 @@ namespace Mobs
         [SerializeField] private float _runAwaySpeed;
 
         private BehaviorTree _tree = new BehaviorTree();
-
-        protected void Awake()
-        {
-            SetupTree();
-        }
 
         protected override void HandleSpawn()
         {
@@ -54,7 +51,7 @@ namespace Mobs
                     new TeleportFromTypesNode(this, _teleportCheckRadius, e => e is Player, _teleportCooldown, _teleportMovementDistance),
                     new AvoidTypesNode(this, _runAwayCheckRadius, e => e is Player, _runAwaySpeed),
                     new RangedAttackNode(this, attackHandler, _attackMovementSpeed, _attackStopDistance, _attackDodgeDistance, _attackDodgeCooldown, _attackCooldown),
-                    new WanderAroundNode(this, _patrolMovementDistance, _patrolMovementSpeed, _restTime)
+                    new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolMovementSpeed, _minPatrolDuration, _maxPatrolDuration)
                 });
 
             _tree.SetNodes(root);

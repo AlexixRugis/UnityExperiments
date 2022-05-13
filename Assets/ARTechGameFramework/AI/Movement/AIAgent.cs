@@ -32,7 +32,7 @@ namespace ARTech.GameFramework.AI
 
         public bool HasPath()
         {
-            return _agent.hasPath;
+            return _agent.hasPath && _agent.velocity.magnitude > 0.1f;
         }
 
         public void SetStopped(bool isStopped)

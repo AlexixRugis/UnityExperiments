@@ -150,6 +150,7 @@ MonoBehaviour:
     baseValue: 100
   protection:
     baseValue: 100
+  isImmortal: 0
   charactersMask:
     serializedVersion: 2
     m_Bits: 2147483647
@@ -164,5 +165,7 @@ MonoBehaviour:
       m_Calls: []
   _runSpeed: 5
   _patrolSpeed: 3
-  _patrolDistance: 4
-  _restTime: 5
+  _minPatrolDistance: 2
+  _maxPatrolDistance: 4
+  _minPatrolDuration: 4
+  _maxPatrolDuration: 6

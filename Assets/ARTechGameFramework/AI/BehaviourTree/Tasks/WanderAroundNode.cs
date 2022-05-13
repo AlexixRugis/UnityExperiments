@@ -6,43 +6,41 @@ namespace ARTech.GameFramework.AI
     {
         private readonly Character _host;
         private readonly IMovement _agent;
-        private readonly float _patrolDistance;
+        private readonly float _minPatrolDistance;
+        private readonly float _maxPatrolDistance;
         private readonly float _patrolSpeed;
-        private readonly float _restDuration;
+        private readonly float _minPatrolDuration;
+        private readonly float _maxPatrolDuration;
 
-        private float _restStartTime;
+        private float _patrolStartTime;
+        private float _patrolDuration;
 
 
-        public WanderAroundNode(Character host, float patrolDistance, float speed, float restDuration)
+        public WanderAroundNode(Character host, float minPatrolDistance, float maxPatrolDistance, float speed, float minPatrolDuration, float maxPatrolDuration)
         {
             _host = host;
             _agent = host.MovementController;
-            _patrolDistance = patrolDistance;
+            _minPatrolDuration = minPatrolDuration;
+            _maxPatrolDuration = maxPatrolDuration;
             _patrolSpeed = speed;
-            _restDuration = restDuration;
+            _minPatrolDistance = minPatrolDistance;
+            _maxPatrolDistance = maxPatrolDistance;
 
-            _restStartTime = 0;
+            _patrolStartTime = 0;
+            _patrolDuration = Random.Range(_minPatrolDuration, _maxPatrolDuration);
         }
 
         public override NodeState Evaluate()
         {
-            if (_agent.HasPath())
+            if (Time.time - _patrolStartTime > _patrolDuration)
             {
-                if (_agent.GetRemainingDistance() > _patrolDistance * 2)
-                {
-                    _agent.ClearPath();
-                }
-
-                _restStartTime = Time.time;
-                return NodeState.Running;
-            }
-
-            if (Time.time - _restStartTime > _restDuration)
-            {
-                if (_agent.TryMove(_host.GetRandomPositionAround(Random.Range(_patrolDistance * 0.5f, _patrolDistance)))) {
+                float patrolDistance = Random.Range(_minPatrolDistance, _maxPatrolDistance);
+                if (_agent.TryMove(_host.GetRandomPositionAround(patrolDistance))) {
+                    _patrolStartTime = Time.time;
+                    _patrolDuration = Random.Range(_minPatrolDuration, _maxPatrolDuration);
                     _agent.Speed = _patrolSpeed;
                     return NodeState.Running;
-                } else if (_host.Area.GetDistance(_host.transform.position) > _patrolDistance)
+                } else if (_host.Area.GetDistance(_host.transform.position) > patrolDistance)
                 {
                     _agent.Teleport(_host.Area.GetRandomPointIn());
                 }

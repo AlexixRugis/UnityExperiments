@@ -99,9 +99,11 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  _patrolMovementDistance: 7
+  _minPatrolDistance: 2
+  _maxPatrolDistance: 3
   _patrolMovementSpeed: 3
-  _restTime: 2
+  _minPatrolDuration: 4
+  _maxPatrolDuration: 5
   _attackCheckDistance: 15
   _attackMovementSpeed: 5
   _attackStopDistance: 10
