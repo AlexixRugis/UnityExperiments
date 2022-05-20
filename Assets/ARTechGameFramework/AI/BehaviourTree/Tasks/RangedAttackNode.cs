@@ -2,74 +2,67 @@ using UnityEngine;
 
 namespace ARTech.GameFramework.AI
 {
-    public class RangedAttackNode : Node
+    public class RangedAttackNode : AIState
     {
         private readonly Character _host;
         private readonly IMovement _agent;
-        private readonly IRangedAttackHandler _handler;
+        private readonly IAttackHandler _handler;
         private readonly float _movementSpeed;
-        private readonly float _stoppingDistance;
-        private readonly float _dodgeDistance;
-        private readonly float _dodgeCooldown;
-        private readonly float _cooldown;
 
         private float _lastAttackTime;
-        private float _lastDodgeTime;
+        private bool _isPerforming;
 
-        public RangedAttackNode(Character host, IRangedAttackHandler handler,
-            float movementSpeed, float stoppingDistance,
-            float dodgeDistance, float dodgeCooldown, float cooldown)
+        public RangedAttackNode(Character host, IAttackHandler handler,
+            float movementSpeed)
         {
             _host = host;
             _agent = host.MovementController;
             _handler = handler;
             _movementSpeed = movementSpeed;
-            _stoppingDistance = stoppingDistance;
-            _dodgeDistance = dodgeDistance;
-            _dodgeCooldown = dodgeCooldown;
-            _cooldown = cooldown;
 
             _lastAttackTime = 0;
         }
 
-        public override NodeState Evaluate()
+        public override void OnEnterState()
+        {
+            base.OnEnterState();
+            _isPerforming = false;
+        }
+
+        public override bool CanEnter() => _host.BattleTarget && Time.time - _lastAttackTime > _handler.Cooldown && !_handler.IsPerforming;
+
+        public override bool CanExit() => false;
+
+        public override AIStateResult Evaluate()
         {
             Character target = _host.BattleTarget;
-            if (target == null) return NodeState.Failure;
+            if (!target) return AIStateResult.Success;
 
             float distance = (_host.transform.position - target.transform.position).magnitude;
-            bool canSeeTarget = _host.CanSee(target, _stoppingDistance + 3f);
+            bool canSeeTarget = _host.CanSee(target, float.MaxValue);
 
-            if (distance <= _stoppingDistance + 3f)
-            {
-                if (canSeeTarget && Time.time - _lastAttackTime >= _cooldown)
-                {
-                    _agent.ClearPath();
-                    _handler.AttackRanged(target);
-                    _lastAttackTime = Time.time;
-                } else if (Time.time - _lastDodgeTime > _dodgeCooldown)
-                {
-                    if (!_agent.HasPath())
-                    {
-                        _agent.TryMove(
-                            _host.GetRandomPositionAround(_dodgeDistance)
-                        );
-                    } else
-                    {
-                        _lastDodgeTime = Time.time;
-                    }
-                }
-            }
-            else
+            if (canSeeTarget)
             {
                 _agent.Speed = _movementSpeed;
-
-                Vector3 targetPosition = Vector3.Lerp(_host.transform.position, target.transform.position, 1f - (_stoppingDistance / distance));
-
+                Vector3 targetPosition = Vector3.Lerp(_host.transform.position, target.transform.position, 1f - (_handler.AttackDistance / distance));
                 _agent.TryMove(targetPosition);
             }
 
-            return NodeState.Running;
+            if (!_isPerforming && canSeeTarget)
+            {
+                if (distance <= _handler.AttackDistance + 3f)
+                {
+                    _handler.Attack(target);
+                    _isPerforming = true;
+                }
+            }
+            else if (_isPerforming)
+            {
+                if (_handler.IsPerforming) _lastAttackTime = Time.time;
+                else return AIStateResult.Success;
+            }
+
+            return AIStateResult.Running;
         }
     }
 }

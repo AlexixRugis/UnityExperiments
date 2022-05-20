@@ -10,54 +10,52 @@ namespace Mobs
     public sealed class LeafSpirit : Character
     {
         [Header("Anger")]
-        [SerializeField] private float attackRadius;
         [SerializeField] private float angerRadius;
         [SerializeField] private float attackMovementSpeed;
-        [SerializeField] private float attackCooldown;
-        [SerializeField] private float dodgeDistance;
-        [SerializeField] private float dodgeCooldown;
-
+        [SerializeField] private float targetLostTime;
+        [Header("Strafe")]
+        [SerializeField] private float strafeDistance;
+        [SerializeField] private float strafeSpeed;
         [Header("Wander")]
         [SerializeField] private float minWanderDistance;
         [SerializeField] private float maxWanderDistance;
         [SerializeField] private float wanderSpeed;
         [SerializeField] private float minPatrolDuration;
         [SerializeField] private float maxPatrolDuration;
+        [Header("Teleport to area")]
+        [SerializeField] private float distanceToTeleport;
+        [SerializeField] private float teleportDuration;
+        [SerializeField] private GameObject teleportGFX;
 
-        private BehaviorTree _tree = new BehaviorTree();
+        private AIStateMachine _stateMachine = new AIStateMachine();
         private LeafSpiritAttackHandler _attackHandler;
 
         protected override void HandleSpawn()
         {
             base.HandleSpawn();
             _attackHandler = GetComponent<LeafSpiritAttackHandler>();
-            SetupTree();
+            SetupAI();
         }
 
-        private void SetupTree()
+        private void SetupAI()
         {
-            Node root = new Selector(new List<Node>{
-                new AngerTypesNode(this, c => c is Player, angerRadius),
-
-                new MeleeAttackNode(this, _attackHandler, attackMovementSpeed, attackRadius, dodgeDistance, dodgeCooldown, attackCooldown),
-                new WanderAroundNode(this, minWanderDistance, maxWanderDistance, wanderSpeed, minPatrolDuration, maxPatrolDuration),
-            });
-
-            _tree.SetNodes(root);
+            _stateMachine.AddState(new MeleeAttackNode(this, _attackHandler, attackMovementSpeed));
+            _stateMachine.AddState(new StrafeState(this, strafeDistance, strafeSpeed, 1.5f));
+            _stateMachine.AddState(new TeleportToAreaNode(this, distanceToTeleport, teleportDuration, teleportGFX));
+            _stateMachine.AddState(new WanderAroundNode(this, minWanderDistance, maxWanderDistance, wanderSpeed, minPatrolDuration, maxPatrolDuration));
+            _stateMachine.AddSensorTask(new AngerTypesSensor(this, c => c is Player, angerRadius, targetLostTime));
         }
 
         protected override void HandleLifeUpdate()
         {
             base.HandleLifeUpdate();
-            _tree.Tick();
+            _stateMachine.Tick();
         }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, angerRadius);
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
     }
 }

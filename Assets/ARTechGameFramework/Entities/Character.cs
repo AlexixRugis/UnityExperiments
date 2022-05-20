@@ -23,6 +23,7 @@ namespace ARTech.GameFramework
 
         public bool IsAlive { get; protected set; }
         public float CurrentHealth { get; protected set; }
+        public bool IsImmortal { get => isImmortal; set => isImmortal = value; }
 
         public Stat MaxHealth => maxHealth;
         public Stat Protection => protection;
@@ -170,7 +171,6 @@ namespace ARTech.GameFramework
 
         protected virtual void HandleLifeUpdate()
         {
-
         }
 
         protected virtual void HandleHealthChange(float lastHealth)

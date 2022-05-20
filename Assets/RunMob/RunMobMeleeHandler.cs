@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Mobs
 {
-    [RequireComponent(typeof(LeafSpirit))]
-    public class LeafSpiritAttackHandler : MonoBehaviour, IAttackHandler
+    [RequireComponent(typeof(RunMob))]
+    public class RunMobMeleeHandler : MonoBehaviour, IAttackHandler
     {
         private const string AnimatorTriggerName = "Attack";
 

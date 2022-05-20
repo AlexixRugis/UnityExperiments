@@ -19,6 +19,8 @@ namespace ARTech.GameFramework.AI
 
         public float AgentRadius => _agent.radius;
 
+        public Vector3 DestinationPoint => _agent.destination;
+
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();

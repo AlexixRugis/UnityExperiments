@@ -6,8 +6,10 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(JadeGoastWispBT))]
-    public class JadeGoastAttackHandler : MonoBehaviour, IRangedAttackHandler
+    public class JadeGoastAttackHandler : MonoBehaviour, IAttackHandler
     {
+        [SerializeField] private float _attackDistance;
+        [SerializeField] private float _cooldown;
         [SerializeField] private Transform _bulletHolder;
         [SerializeField] private Transform[] _bulletPositions;
         [SerializeField] private Projectile _projectilePrefab;
@@ -17,6 +19,14 @@ namespace Mobs
         private Character _host;
         private Character _target;
         private Vector3 _lastTargetPosition;
+
+        public float Cooldown => _cooldown;
+        public bool IsPerforming { get; private set; }
+
+        public bool CanPerform => !IsPerforming;
+
+        public float AttackDistance => _attackDistance;
+
 
         private void Awake()
         {
@@ -32,13 +42,15 @@ namespace Mobs
             }
         }
 
-        public void AttackRanged(Character damageable)
+        public void Attack(Character damageable)
         {
-            StartCoroutine(Attack(damageable));
+            if (CanPerform)
+                StartCoroutine(AttackRoutine(damageable));
         }
 
-        private IEnumerator Attack(Character target)
+        private IEnumerator AttackRoutine(Character target)
         {
+            IsPerforming = true;
             _target = target;
             Projectile[] bullets = new Projectile[_bulletPositions.Length];
             var arr = _bulletPositions.OrderBy(x => Random.Range(0, _bulletPositions.Length)).ToArray();
@@ -62,6 +74,8 @@ namespace Mobs
             }
 
             yield return null;
+            IsPerforming = false;
+            _target = null;
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ARTech.GameFramework.AI
 {
-    public class AvoidTypesNode : Node
+    public class AvoidTypesNode : AIState
     {
         private readonly Character _host;
         private readonly IMovement _agent;
@@ -22,22 +22,27 @@ namespace ARTech.GameFramework.AI
             _runSpeed = runSpeed;
         }
 
-        public override NodeState Evaluate()
+        public override bool CanEnter()
         {
-            if (_avoidTarget != null)
-            {
-                _agent.Speed = _runSpeed;
-                _agent.TryMove(
-                    _host.GetPositionFrom(
-                        _avoidTarget.transform.position,
-                        2f
-                    )
-                );
-            }
+            return _host.GetNearest(_match, _checkDistance);
+        }
 
+        public override bool CanExit() => true;
+
+        public override AIStateResult Evaluate()
+        {
             _avoidTarget = _host.GetNearest(_match, _checkDistance);
+            if (_avoidTarget == null) return AIStateResult.Success;
 
-            return _avoidTarget != null ? NodeState.Running : NodeState.Failure;
+            _agent.Speed = _runSpeed;
+            _agent.TryMove(
+                _host.GetPositionFrom(
+                    _avoidTarget.transform.position,
+                    2f
+                )
+            );
+
+            return AIStateResult.Running;
         }
 
         

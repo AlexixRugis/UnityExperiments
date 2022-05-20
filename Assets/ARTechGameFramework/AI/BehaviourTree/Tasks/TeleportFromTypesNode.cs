@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ARTech.GameFramework.AI
 {
-    public class TeleportFromTypesNode : Node
+    public class TeleportFromTypesNode : AIState
     {
         private readonly Character _host;
         private readonly IMovement _agent;
@@ -13,6 +13,7 @@ namespace ARTech.GameFramework.AI
         private readonly float _distance;
 
         private float _lastTeleportTime;
+        private Character _target;
 
         public TeleportFromTypesNode(Character host, float checkRadius, Predicate<Character> match, float cooldown, float distance)
         {
@@ -26,29 +27,35 @@ namespace ARTech.GameFramework.AI
             _lastTeleportTime = 0;
         }
 
-        public override NodeState Evaluate()
+        public override bool CanEnter()
         {
             if (Time.time - _lastTeleportTime <= _cooldown)
             {
-                return NodeState.Failure;
+                return false;
             }
 
-            Character target = _host.GetNearest(_match, _checkRadius);
+            _target = _host.GetNearest(_match, _checkRadius);
 
-            if (target == null)
+            if (_target == null)
             {
-                return NodeState.Failure;
+                return false;
             }
 
+            return true;
+        }
+
+        public override bool CanExit() => true;
+
+        public override AIStateResult Evaluate()
+        {
             if (_agent.Teleport(
                 _host.GetRandomPositionAround(_distance)
             ))
             {
                 _lastTeleportTime = Time.time;
-                return NodeState.Success;
             }
 
-            return NodeState.Failure;
+            return AIStateResult.Success;
         }
     }
 }

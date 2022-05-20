@@ -24,6 +24,8 @@ namespace ARTech.GameFramework
 
         public float AgentRadius => _radius;
 
+        public Vector3 DestinationPoint => _target == null ? Vector3.positiveInfinity : _target.Value;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();

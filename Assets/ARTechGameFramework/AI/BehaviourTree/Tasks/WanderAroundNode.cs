@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ARTech.GameFramework.AI
 {
-    public class WanderAroundNode : Node
+    public class WanderAroundNode : AIState
     {
         private readonly Character _host;
         private readonly IMovement _agent;
@@ -14,7 +14,6 @@ namespace ARTech.GameFramework.AI
 
         private float _patrolStartTime;
         private float _patrolDuration;
-
 
         public WanderAroundNode(Character host, float minPatrolDistance, float maxPatrolDistance, float speed, float minPatrolDuration, float maxPatrolDuration)
         {
@@ -30,23 +29,33 @@ namespace ARTech.GameFramework.AI
             _patrolDuration = Random.Range(_minPatrolDuration, _maxPatrolDuration);
         }
 
-        public override NodeState Evaluate()
+        public override bool CanEnter() => true; //!!!!!
+
+        public override bool CanExit() => true;
+
+        public override AIStateResult Evaluate()
         {
             if (Time.time - _patrolStartTime > _patrolDuration)
             {
                 float patrolDistance = Random.Range(_minPatrolDistance, _maxPatrolDistance);
-                if (_agent.TryMove(_host.GetRandomPositionAround(patrolDistance))) {
+                Vector3? targetPoint;
+                if (_host.Area.GetDistance(_host.transform.position) > 1f)
+                {
+                    targetPoint = _host.Area.GetRandomPointIn();
+                }
+                else
+                {
+                    targetPoint = _host.GetRandomPositionAround(patrolDistance);
+                }
+
+                if (_agent.TryMove(targetPoint)) {
                     _patrolStartTime = Time.time;
                     _patrolDuration = Random.Range(_minPatrolDuration, _maxPatrolDuration);
                     _agent.Speed = _patrolSpeed;
-                    return NodeState.Running;
-                } else if (_host.Area.GetDistance(_host.transform.position) > patrolDistance)
-                {
-                    _agent.Teleport(_host.Area.GetRandomPointIn());
                 }
             }
 
-            return NodeState.Failure;
+            return AIStateResult.Running;
         }
     }
 }

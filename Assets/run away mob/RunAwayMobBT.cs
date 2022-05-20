@@ -16,30 +16,25 @@ namespace Mobs
         [SerializeField] private float _minPatrolDuration;
         [SerializeField] private float _maxPatrolDuration;
 
-        private BehaviorTree _tree = new BehaviorTree();
+        private AIStateMachine _stateMachine = new AIStateMachine();
 
         protected override void HandleSpawn()
         {
             base.HandleSpawn();
 
-            SetupTree();
+            SetupAI();
         }
 
         protected override void HandleLifeUpdate()
         {
             base.HandleLifeUpdate();
-            _tree.Tick();
+            _stateMachine.Tick();
         }
 
-        protected void SetupTree()
+        protected void SetupAI()
         {
-            Node root = new Selector(new List<Node>()
-            {
-                new AvoidTypesNode(this, 5f, e => e is Player, _runSpeed),
-                new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolSpeed, _minPatrolDistance, _maxPatrolDistance)
-            });
-
-            _tree.SetNodes(root);
+            _stateMachine.AddState(new AvoidTypesNode(this, 5f, e => e is Player, _runSpeed));
+            _stateMachine.AddState(new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolSpeed, _minPatrolDuration, _maxPatrolDuration));
         }
     }
 }

@@ -8,6 +8,7 @@ namespace ARTech.GameFramework
         [SerializeField] private float _speed = 5f;
         [SerializeField] private float _damage = 10f;
         [SerializeField] private float _hitCheckRadius = 0.5f;
+        [SerializeField] private float _lifetime = 20f;
         [SerializeField] private LayerMask _hitMask;
 
         public float Speed { get => _speed; set => _speed = value; }
@@ -24,6 +25,8 @@ namespace ARTech.GameFramework
         {
             Direction = direction;
             Launched = true;
+
+            if (_lifetime > 0f) Destroy(gameObject, _lifetime);
         }
 
         private void Update()

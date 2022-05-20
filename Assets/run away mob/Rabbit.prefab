@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 358957350031656842}
   - component: {fileID: 358957350031656841}
   - component: {fileID: 358957350031656840}
+  - component: {fileID: 6026091987720279008}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Untagged
@@ -169,3 +170,17 @@ MonoBehaviour:
   _maxPatrolDistance: 4
   _minPatrolDuration: 4
   _maxPatrolDuration: 6
+--- !u!114 &6026091987720279008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358957350031656858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7645dd3d84b1a4d83b10ede9aec311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 5
+  jumpDuration: 1

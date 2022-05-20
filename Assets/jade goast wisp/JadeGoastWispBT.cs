@@ -17,10 +17,7 @@ namespace Mobs
         [Header("Attack")]
         [SerializeField] private float _attackCheckDistance;
         [SerializeField] private float _attackMovementSpeed;
-        [SerializeField] private float _attackStopDistance;
-        [SerializeField] private float _attackDodgeDistance;
-        [SerializeField] private float _attackDodgeCooldown;
-        [SerializeField] private float _attackCooldown;
+        [SerializeField] private float _targetLostTime;
         [Header("Teleport")]
         [SerializeField] private float _teleportCheckRadius;
         [SerializeField] private float _teleportMovementDistance;
@@ -28,33 +25,34 @@ namespace Mobs
         [Header("Avoid")]
         [SerializeField] private float _runAwayCheckRadius;
         [SerializeField] private float _runAwaySpeed;
+        [Header("Strafe")]
+        [SerializeField] private float _strageRadius;
+        [SerializeField] private float _strafeSpeed;
 
-        private BehaviorTree _tree = new BehaviorTree();
+        private AIStateMachine _stateMachine = new AIStateMachine();
 
         protected override void HandleSpawn()
         {
             base.HandleSpawn();
-            SetupTree();
+            SetupAI();
         }
 
         protected override void HandleLifeUpdate()
         {
-            _tree.Tick();
+            _stateMachine.Tick();
         } 
 
-        private void SetupTree()
+        private void SetupAI()
         {
-            var attackHandler = GetComponent<IRangedAttackHandler>();
-            Node root = new Selector(new List<Node>() {
-                    new AngerTypesNode(this, e => e is Player, _attackCheckDistance),
+            var attackHandler = GetComponent<IAttackHandler>();
 
-                    new TeleportFromTypesNode(this, _teleportCheckRadius, e => e is Player, _teleportCooldown, _teleportMovementDistance),
-                    new AvoidTypesNode(this, _runAwayCheckRadius, e => e is Player, _runAwaySpeed),
-                    new RangedAttackNode(this, attackHandler, _attackMovementSpeed, _attackStopDistance, _attackDodgeDistance, _attackDodgeCooldown, _attackCooldown),
-                    new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolMovementSpeed, _minPatrolDuration, _maxPatrolDuration)
-                });
+            _stateMachine.AddSensorTask(new AngerTypesSensor(this, e => e is Player, _attackCheckDistance, _targetLostTime));
 
-            _tree.SetNodes(root);
+            _stateMachine.AddState(new TeleportFromTypesNode(this, _teleportCheckRadius, e => e is Player, _teleportCooldown, _teleportMovementDistance));
+            _stateMachine.AddState(new AvoidTypesNode(this, _runAwayCheckRadius, e => e is Player, _runAwaySpeed));
+            _stateMachine.AddState(new RangedAttackNode(this, attackHandler, _attackMovementSpeed));
+            _stateMachine.AddState(new StrafeState(this, _strageRadius, _strafeSpeed, 1f));
+            _stateMachine.AddState(new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolMovementSpeed, _minPatrolDuration, _maxPatrolDuration));
         }
 
         protected void OnDrawGizmosSelected()
