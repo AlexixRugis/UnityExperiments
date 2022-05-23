@@ -22,12 +22,13 @@ namespace Mobs
         [SerializeField] private float _teleportCheckRadius;
         [SerializeField] private float _teleportMovementDistance;
         [SerializeField] private float _teleportCooldown;
-        [Header("Avoid")]
-        [SerializeField] private float _runAwayCheckRadius;
-        [SerializeField] private float _runAwaySpeed;
         [Header("Strafe")]
         [SerializeField] private float _strageRadius;
         [SerializeField] private float _strafeSpeed;
+        [Header("Return Area")]
+        [SerializeField] private float returnDistance;
+        [SerializeField] private float returnDuration;
+        [SerializeField] private GameObject returnGfx;
 
         private AIStateMachine _stateMachine = new AIStateMachine();
 
@@ -49,9 +50,9 @@ namespace Mobs
             _stateMachine.AddSensorTask(new AngerTypesSensor(this, e => e is Player, _attackCheckDistance, _targetLostTime));
 
             _stateMachine.AddState(new TeleportFromTypesNode(this, _teleportCheckRadius, e => e is Player, _teleportCooldown, _teleportMovementDistance));
-            _stateMachine.AddState(new AvoidTypesNode(this, _runAwayCheckRadius, e => e is Player, _runAwaySpeed));
             _stateMachine.AddState(new RangedAttackNode(this, attackHandler, _attackMovementSpeed));
             _stateMachine.AddState(new StrafeState(this, _strageRadius, _strafeSpeed, 1f));
+            _stateMachine.AddState(new TeleportToAreaNode(this, returnDistance, returnDuration, returnGfx));
             _stateMachine.AddState(new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolMovementSpeed, _minPatrolDuration, _maxPatrolDuration));
         }
 
@@ -59,8 +60,6 @@ namespace Mobs
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _attackCheckDistance);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, _runAwayCheckRadius);
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, _teleportCheckRadius);
         }

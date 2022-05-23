@@ -11,7 +11,8 @@ namespace Mobs
         private const string AnimatorAttackParam = "RunAttack";
 
         [SerializeField] private float cooldown;
-        [SerializeField] private float distance;
+        [SerializeField] private float minAttackDistance;
+        [SerializeField] private float maxAttackDistance;
         [SerializeField] private float speed;
         [SerializeField] private float time;
         [SerializeField] private Animator animator;
@@ -19,7 +20,8 @@ namespace Mobs
         private float _startTime;
         private IMovement _agent;
         public float Cooldown => cooldown;
-        public float AttackDistance => distance;
+        public float MinAttackDistance => minAttackDistance;
+        public float MaxAttackDistance => maxAttackDistance;
         public bool IsPerforming { get; private set; }
 
         private void Awake()

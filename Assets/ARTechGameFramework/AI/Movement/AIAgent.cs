@@ -20,11 +20,28 @@ namespace ARTech.GameFramework.AI
         public float AgentRadius => _agent.radius;
 
         public Vector3 DestinationPoint => _agent.destination;
+        public Vector3? FocusPoint { get; set; }
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             Character = GetComponent<Character>();
+        }
+
+        private void Update()
+        {
+            if (FocusPoint == null)
+            {
+                _agent.updateRotation = true;
+            }
+            else
+            {
+                _agent.updateRotation = false;
+                Vector3 lookDirection = FocusPoint.Value - transform.position;
+                lookDirection.y = 0;
+                transform.rotation = Quaternion.Slerp(transform.rotation,
+                    Quaternion.LookRotation(lookDirection, Vector3.up), Time.deltaTime * 10f);
+            }
         }
 
         public void ClearPath()

@@ -26,6 +26,8 @@ namespace ARTech.GameFramework
 
         public Vector3 DestinationPoint => _target == null ? Vector3.positiveInfinity : _target.Value;
 
+        public Vector3? FocusPoint { get; set; }
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -37,6 +39,21 @@ namespace ARTech.GameFramework
             if (_target != null)
             {
                 _rigidbody.MovePosition(Vector3.MoveTowards(_rigidbody.position, _target.Value, _speed * Time.fixedDeltaTime));
+
+                if (FocusPoint == null)
+                {
+                    Vector3 lookDirection = _target.Value - _rigidbody.position;
+                    lookDirection.y = 0;
+                    _rigidbody.rotation = Quaternion.Slerp(_rigidbody.rotation,
+                    Quaternion.LookRotation(lookDirection, Vector3.up), Time.deltaTime * 10f);
+                }
+                else
+                {
+                    Vector3 lookDirection = FocusPoint.Value - _rigidbody.position;
+                    lookDirection.y = 0;
+                    _rigidbody.rotation = Quaternion.Slerp(_rigidbody.rotation,
+                    Quaternion.LookRotation(lookDirection, Vector3.up), Time.deltaTime * 10f);
+                }
 
                 if ((_rigidbody.position - _target.Value).sqrMagnitude < _stoppingDistance * _stoppingDistance)
                 {

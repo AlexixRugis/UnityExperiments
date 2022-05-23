@@ -41,17 +41,28 @@ namespace ARTech.GameFramework.AI
             float distance = (_host.transform.position - target.transform.position).magnitude;
             bool canSeeTarget = _host.CanSee(target, float.MaxValue);
 
-            if (canSeeTarget)
-            {
-                _agent.Speed = _movementSpeed;
-                Vector3 targetPosition = Vector3.Lerp(_host.transform.position, target.transform.position, 1f - (_handler.AttackDistance / distance));
-                _agent.TryMove(targetPosition);
-            }
-
             if (!_isPerforming && canSeeTarget)
             {
-                if (distance <= _handler.AttackDistance + 3f)
+                _agent.Speed = _movementSpeed;
+                Vector3 direction = target.transform.position - _host.transform.position;
+                _agent.FocusPoint = target.transform.position;
+                if (distance < _handler.MinAttackDistance)
                 {
+                    _agent.TryMove(_host.transform.position - direction.normalized);
+                }
+                else if (distance > _handler.MaxAttackDistance)
+                {
+                    _agent.TryMove(_host.transform.position + direction.normalized);
+                }
+                else
+                {
+                    _agent.FocusPoint = null;
+                    _agent.ClearPath();
+                }
+
+                if (distance <= _handler.MaxAttackDistance + 1f && distance >= _handler.MinAttackDistance - 1f)
+                {
+                    _agent.FocusPoint = null;
                     _handler.Attack(target);
                     _isPerforming = true;
                 }

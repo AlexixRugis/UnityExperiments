@@ -33,6 +33,12 @@ namespace ARTech.GameFramework.AI
 
         public override bool CanExit() => true;
 
+        public override void OnEnterState()
+        {
+            base.OnEnterState();
+            _agent.FocusPoint = null;
+        }
+
         public override AIStateResult Evaluate()
         {
             if (Time.time - _patrolStartTime > _patrolDuration)

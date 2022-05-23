@@ -542,7 +542,7 @@ MonoBehaviour:
   angerRadius: 10
   attackMovementSpeed: 3
   targetLostTime: 5
-  strafeDistance: 2
+  strafeDistance: 3
   strafeSpeed: 1.5
   minWanderDistance: 3
   maxWanderDistance: 5
@@ -564,7 +564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27bacaf6feebe1e4ab80cd4e1c001755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 1.5
+  minAttackDistance: 1
+  maxAttackDistance: 1.5
   cooldown: 1
   animationLength: 1
   animator: {fileID: 2625305050032768826}

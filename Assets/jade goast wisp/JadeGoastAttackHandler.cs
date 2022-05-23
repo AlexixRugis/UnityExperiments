@@ -8,7 +8,8 @@ namespace Mobs
     [RequireComponent(typeof(JadeGoastWispBT))]
     public class JadeGoastAttackHandler : MonoBehaviour, IAttackHandler
     {
-        [SerializeField] private float _attackDistance;
+        [SerializeField] private float _minAttackDistance;
+        [SerializeField] private float _maxAttackDistance;
         [SerializeField] private float _cooldown;
         [SerializeField] private Transform _bulletHolder;
         [SerializeField] private Transform[] _bulletPositions;
@@ -25,7 +26,8 @@ namespace Mobs
 
         public bool CanPerform => !IsPerforming;
 
-        public float AttackDistance => _attackDistance;
+        public float MinAttackDistance => _minAttackDistance;
+        public float MaxAttackDistance => _maxAttackDistance;
 
 
         private void Awake()

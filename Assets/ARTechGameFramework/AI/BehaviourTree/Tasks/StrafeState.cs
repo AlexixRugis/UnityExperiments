@@ -8,46 +8,63 @@ namespace ARTech.GameFramework.AI
     {
         private readonly Character _host;
         private readonly IMovement _agent;
-        private readonly float _radius;
+        private readonly float _targetDistance;
         private readonly float _speed;
         private readonly float _time;
 
-        private float _lastStrafeTime;
+        private float _lastChangeDirectionTime;
+        private Vector2 _direction;
 
-        public StrafeState(Character host, float radius, float speed, float time)
+        public StrafeState(Character host, float targetDistance, float speed, float time)
         {
             _host = host;
             _agent = host.MovementController;
-            _radius = radius;
+            _targetDistance = targetDistance;
             _speed = speed;
             _time = time;
-            _lastStrafeTime = 0;
+            _lastChangeDirectionTime = 0;
         }
 
         public override bool CanEnter() => _host.BattleTarget;
 
         public override bool CanExit() => true;
 
+        public override void OnExitState()
+        {
+            base.OnExitState();
+            _agent.FocusPoint = null;
+        }
+
         public override AIStateResult Evaluate()
         {
             if (!_host.BattleTarget) return AIStateResult.Success;
 
-            if (Time.time - _lastStrafeTime > _time)
-            {
-                if (!_agent.HasPath())
-                {
-                    _agent.TryMove(
-                        _host.GetRandomPositionAround(_radius)
-                    );
-                }
-                else
-                {
-                    _lastStrafeTime = Time.time;
+            Vector3 direction = _host.BattleTarget.transform.position - _host.transform.position;
+            float sqrDistance = direction.sqrMagnitude;
+            direction.Normalize();
 
-                    Vector3 direction = _host.BattleTarget.transform.position - _host.transform.position;
-                    direction.y = 0;
-                    _host.transform.rotation = Quaternion.LookRotation(direction);
-                }
+            _agent.FocusPoint = _host.BattleTarget.transform.position;
+            _agent.Speed = _speed;
+            if (sqrDistance < _targetDistance * _targetDistance - 2f)
+            {
+                _agent.TryMove(_host.transform.position - direction);
+            }
+            else if (sqrDistance > _targetDistance * _targetDistance + 2f)
+            {
+                _agent.TryMove(_host.transform.position + direction);
+            }
+            else
+            {
+                Vector3 strafeDirectionRight = Vector3.Cross(direction, Vector3.up).normalized;
+                _agent.TryMove(_host.transform.position +
+                    strafeDirectionRight * _direction.x +
+                    Vector3.up * _direction.y);
+            }
+
+            if (Time.time - _lastChangeDirectionTime > _time)
+            {
+                _direction = Random.insideUnitCircle.normalized;
+                _lastChangeDirectionTime = Time.time;
             }
 
             return AIStateResult.Running;

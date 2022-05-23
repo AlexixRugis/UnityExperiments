@@ -9,7 +9,8 @@ namespace Mobs
     {
         private const string AnimatorTriggerName = "Attack";
 
-        [SerializeField] private float attackDistance;
+        [SerializeField] private float minAttackDistance;
+        [SerializeField] private float maxAttackDistance;
         [SerializeField] private float cooldown;
         [SerializeField] private float animationLength;
         [SerializeField] private Animator animator;
@@ -18,7 +19,8 @@ namespace Mobs
         public bool IsPerforming { get; private set; }
         public bool CanPerform => !IsPerforming;
 
-        public float AttackDistance => attackDistance;
+        public float MinAttackDistance => minAttackDistance;
+        public float MaxAttackDistance => maxAttackDistance;
 
         public void Attack(Character damageable)
         {

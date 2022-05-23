@@ -4,6 +4,7 @@ namespace ARTech.GameFramework
 {
     public interface IMovement
     {
+        Vector3? FocusPoint { get; set; }
         float AgentRadius { get; }
         Character Character { get; }
         float Speed { get; set; }

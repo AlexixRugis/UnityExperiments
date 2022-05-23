@@ -22,6 +22,10 @@ namespace Mobs
         [Header("Attacks")]
         [SerializeField] private float meleeAttackSpeed;
         [SerializeField] private float runAttackSpeed;
+        [Header("Return area")]
+        [SerializeField] private float teleportDistance;
+        [SerializeField] private float teleportDuration;
+        [SerializeField] private GameObject teleportGfx;
 
         private AIStateMachine _stateMachine;
 
@@ -45,6 +49,7 @@ namespace Mobs
             _stateMachine.AddState(new RangedAttackNode(this, GetComponent<RunMobRangedHandler>(), runAttackSpeed));
             _stateMachine.AddState(new MeleeAttackNode(this, GetComponent<RunMobMeleeHandler>(), meleeAttackSpeed));
             _stateMachine.AddState(new StrafeState(this, strafeRadius, strafeSpeed, 2f));
+            _stateMachine.AddState(new TeleportToAreaNode(this, teleportDistance, teleportDuration, teleportGfx));
             _stateMachine.AddState(new WanderAroundNode(this, minPatrolDistance, maxPatrolDistance, patrolSpeed, minPatrolDuration, maxPatrolDuration));
         }
     }
