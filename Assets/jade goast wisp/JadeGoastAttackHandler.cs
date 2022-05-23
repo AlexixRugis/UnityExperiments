@@ -6,11 +6,8 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(JadeGoastWispBT))]
-    public class JadeGoastAttackHandler : MonoBehaviour, IAttackHandler
+    public sealed class JadeGoastAttackHandler : AttackHandler
     {
-        [SerializeField] private float _minAttackDistance;
-        [SerializeField] private float _maxAttackDistance;
-        [SerializeField] private float _cooldown;
         [SerializeField] private Transform _bulletHolder;
         [SerializeField] private Transform[] _bulletPositions;
         [SerializeField] private Projectile _projectilePrefab;
@@ -20,15 +17,6 @@ namespace Mobs
         private Character _host;
         private Character _target;
         private Vector3 _lastTargetPosition;
-
-        public float Cooldown => _cooldown;
-        public bool IsPerforming { get; private set; }
-
-        public bool CanPerform => !IsPerforming;
-
-        public float MinAttackDistance => _minAttackDistance;
-        public float MaxAttackDistance => _maxAttackDistance;
-
 
         private void Awake()
         {
@@ -44,13 +32,7 @@ namespace Mobs
             }
         }
 
-        public void Attack(Character damageable)
-        {
-            if (CanPerform)
-                StartCoroutine(AttackRoutine(damageable));
-        }
-
-        private IEnumerator AttackRoutine(Character target)
+        protected override IEnumerator Perform(Character target)
         {
             IsPerforming = true;
             _target = target;

@@ -1,40 +1,27 @@
 using ARTech.GameFramework;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mobs
 {
     [RequireComponent(typeof(RunMob), typeof(IMovement))]
-    public sealed class RunMobRangedHandler : MonoBehaviour, IAttackHandler
+    public sealed class RunMobRangedHandler : AttackHandler
     {
         private const string AnimatorAttackParam = "RunAttack";
 
-        [SerializeField] private float cooldown;
-        [SerializeField] private float minAttackDistance;
-        [SerializeField] private float maxAttackDistance;
         [SerializeField] private float speed;
         [SerializeField] private float time;
         [SerializeField] private Animator animator;
 
         private float _startTime;
         private IMovement _agent;
-        public float Cooldown => cooldown;
-        public float MinAttackDistance => minAttackDistance;
-        public float MaxAttackDistance => maxAttackDistance;
-        public bool IsPerforming { get; private set; }
 
         private void Awake()
         {
             _agent = GetComponent<IMovement>();
         }
 
-        public void Attack(Character damageable)
-        {
-            StartCoroutine(AttackRoutine(damageable));
-        }
-
-        private IEnumerator AttackRoutine(Character target)
+        protected override IEnumerator Perform(Character target)
         {
             IsPerforming = true;
 

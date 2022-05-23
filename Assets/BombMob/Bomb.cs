@@ -1,12 +1,22 @@
+using ARTech.GameFramework;
 using UnityEngine;
 
-namespace ARTech.GameFramework.Examples
+namespace Mobs
 {
-    public class ZoneDamageBullet : Projectile
+    [RequireComponent(typeof(Rigidbody))]
+    public sealed class Bomb : Projectile
     {
         [SerializeField] private float _damageZone;
         [SerializeField] private AnimationCurve _damageFalloff;
         [SerializeField] private LayerMask _damagableMask;
+
+        private Rigidbody _rigidbody;
+
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.isKinematic = true;
+        }
 
         protected override void HandleHit(Collision collision)
         {
@@ -32,10 +42,11 @@ namespace ARTech.GameFramework.Examples
             Destroy(gameObject);
         }
 
-        protected override void HandleMovement()
+        protected override void HandleLaunch()
         {
-            transform.LookAt(transform.position + Direction);
-            transform.Translate(0, 0, Speed * Time.deltaTime);
+            base.HandleLaunch();
+            _rigidbody.isKinematic = false;
+            _rigidbody.velocity = Direction.normalized * Speed;
         }
     }
 }

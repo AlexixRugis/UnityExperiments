@@ -7,16 +7,12 @@ namespace ARTech.GameFramework
     {
         [SerializeField] private float _speed = 5f;
         [SerializeField] private float _damage = 10f;
-        [SerializeField] private float _hitCheckRadius = 0.5f;
         [SerializeField] private float _lifetime = 20f;
-        [SerializeField] private LayerMask _hitMask;
 
         public float Speed { get => _speed; set => _speed = value; }
         public float Damage { get => _damage; set => _damage = value; }
         public bool Launched { get; private set; }
         public Vector3 Direction { get; private set; }
-        public float HitCheckRadius => _hitCheckRadius;
-        public LayerMask HitMask => _hitMask;
 
         public Predicate<IDamageable> DamageableTypesPredicate { get; set; } = h => true;
         public Character Shooter { get; set; }
@@ -25,6 +21,7 @@ namespace ARTech.GameFramework
         {
             Direction = direction;
             Launched = true;
+            HandleLaunch();
 
             if (_lifetime > 0f) Destroy(gameObject, _lifetime);
         }
@@ -39,22 +36,17 @@ namespace ARTech.GameFramework
 
         private void HandleUpdate()
         {
-
             HandleMovement();
-
-            if (Physics.CheckSphere(transform.position, _hitCheckRadius, _hitMask))
-            {
-                HandleHit();
-            }
         }
 
-        protected abstract void HandleMovement();
-        protected abstract void HandleHit();
+        protected virtual void HandleLaunch() { }
+        protected virtual void HandleMovement() { }
+        protected abstract void HandleHit(Collision collision);
 
-        private void OnDrawGizmosSelected()
+        private void OnCollisionEnter(Collision collision)
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, _hitCheckRadius);
+            Debug.Log(collision.transform.name);
+            HandleHit(collision);
         }
     }
 }

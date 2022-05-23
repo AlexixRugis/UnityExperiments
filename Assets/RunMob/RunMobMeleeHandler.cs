@@ -5,30 +5,14 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(RunMob))]
-    public class RunMobMeleeHandler : MonoBehaviour, IAttackHandler
+    public sealed class RunMobMeleeHandler : AttackHandler
     {
         private const string AnimatorTriggerName = "Attack";
 
-        [SerializeField] private float minAttackDistance;
-        [SerializeField] private float maxAttackDistance;
-        [SerializeField] private float cooldown;
         [SerializeField] private float animationLength;
         [SerializeField] private Animator animator;
 
-        public float Cooldown => cooldown;
-        public bool IsPerforming { get; private set; }
-        public bool CanPerform => !IsPerforming;
-
-        public float MinAttackDistance => minAttackDistance;
-        public float MaxAttackDistance => maxAttackDistance;
-
-        public void Attack(Character damageable)
-        {
-            if (CanPerform)
-                StartCoroutine(AttackRoutine(damageable));
-        }
-
-        private IEnumerator AttackRoutine(Character damageable)
+        protected override IEnumerator Perform(Character damageable)
         {
             IsPerforming = true;
 

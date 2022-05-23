@@ -66,6 +66,7 @@ namespace ARTech.GameFramework.AI
             {
                 if (distance <= _handler.MaxAttackDistance + 1f && distance >= _handler.MinAttackDistance - 1f)
                 {
+                    _agent.ClearPath();
                     _agent.FocusPoint = null;
                     _handler.Attack(target);
                     _isPerforming = true;

@@ -6,7 +6,7 @@ using ARTech.GameFramework;
 namespace Mobs
 {
     [RequireComponent(typeof(IMovement))]
-    public class JadeGoastWispBT : Character
+    public sealed class JadeGoastWispBT : Character
     {
         [Header("Patrol")]
         [SerializeField] private float _minPatrolDistance;

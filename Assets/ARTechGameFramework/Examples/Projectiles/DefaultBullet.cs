@@ -4,16 +4,14 @@ namespace ARTech.GameFramework.Examples
 {
     public class DefaultBullet : Projectile
     {
-        protected override void HandleHit()
+        protected override void HandleHit(Collision collision)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, HitCheckRadius, HitMask);
-            foreach (var collider in colliders)
+            if (collision.transform == transform) return;
+
+            IDamageable damagable = collision.transform.GetComponent<IDamageable>();
+            if (damagable != null && damagable != Shooter && DamageableTypesPredicate.Invoke(damagable))
             {
-                IDamageable damagable = collider.GetComponent<IDamageable>();
-                if (damagable != null && damagable != Shooter && DamageableTypesPredicate.Invoke(damagable))
-                {
-                    damagable.TakeDamage(Damage);
-                }
+                damagable.TakeDamage(Damage);
             }
 
             Destroy(gameObject);

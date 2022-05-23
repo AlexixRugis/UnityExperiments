@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using ARTech.GameFramework;
 using ARTech.GameFramework.AI;
@@ -7,7 +5,7 @@ using ARTech.GameFramework.AI;
 namespace Mobs
 {
     [RequireComponent(typeof(AIAgent))]
-    public class RunAwayMobBT : Character
+    public sealed class RunAwayMobBT : Character
     {
         [SerializeField] private float _runSpeed;
         [SerializeField] private float _patrolSpeed;
