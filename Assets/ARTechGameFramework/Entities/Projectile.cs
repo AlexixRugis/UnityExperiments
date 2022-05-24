@@ -45,8 +45,8 @@ namespace ARTech.GameFramework
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.transform.name);
-            HandleHit(collision);
+            if (Launched)
+                HandleHit(collision);
         }
     }
 }

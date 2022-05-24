@@ -106,12 +106,12 @@ MonoBehaviour:
   _maxPatrolDuration: 5
   _attackCheckDistance: 15
   _attackMovementSpeed: 5
-  _targetLostTime: 5
+  _targetLostTime: 20
   _teleportCheckRadius: 4
   _teleportMovementDistance: 6
   _teleportCooldown: 10
-  _strageRadius: 6
-  _strafeSpeed: 2
+  _strageRadius: 7
+  _strafeSpeed: 4
   returnDistance: 15
   returnDuration: 4
   returnGfx: {fileID: 7713767293286682020}
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3235a0bf64fee1146affda9aac97f403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minAttackDistance: 0
-  _maxAttackDistance: 7
-  _cooldown: 3
+  cooldown: 6
+  minDistance: 0
+  maxDistance: 9
   _bulletHolder: {fileID: 893956382479677925}
   _bulletPositions:
   - {fileID: 893956381181710435}
@@ -174,6 +174,7 @@ MonoBehaviour:
     m_Bits: 1
   _stoppingDistance: 1
   _speed: 3
+  _acceleration: 30
 --- !u!135 &893956380921695574
 SphereCollider:
   m_ObjectHideFlags: 0

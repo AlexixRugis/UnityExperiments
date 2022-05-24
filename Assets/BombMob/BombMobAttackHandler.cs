@@ -15,6 +15,7 @@ namespace Mobs
             IsPerforming = true;
 
             Bomb bomb = Instantiate(bombPrefab, bombHolder.position, Quaternion.identity, bombHolder);
+            bomb.DamageableTypesPredicate = c => c is Player;
 
             yield return new WaitForSeconds(1.5f);
 

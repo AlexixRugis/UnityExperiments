@@ -2,8 +2,17 @@ using UnityEngine;
 
 namespace ARTech.GameFramework.Examples
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class DefaultBullet : Projectile
     {
+        private Rigidbody _rigidbody;
+
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.isKinematic = true;
+        }
+
         protected override void HandleHit(Collision collision)
         {
             if (collision.transform == transform) return;
@@ -19,8 +28,8 @@ namespace ARTech.GameFramework.Examples
 
         protected override void HandleMovement()
         {
-            transform.LookAt(transform.position + Direction);
-            transform.Translate(0, 0, Speed * Time.deltaTime);
+            _rigidbody.isKinematic = false;
+            _rigidbody.velocity = Direction.normalized * Speed;
         }
     }
 }

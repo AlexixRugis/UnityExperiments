@@ -11,10 +11,13 @@ namespace ARTech.GameFramework
         [SerializeField] private LayerMask _obstaclesMask;
         [SerializeField] private float _stoppingDistance;
         [SerializeField] private float _speed;
+        [SerializeField] private float _acceleration;
 
         private Rigidbody _rigidbody;
 
         private Vector3? _target = null;
+
+        private Vector3 _currentVelocity;
 
         public float Speed { get => _speed; set => _speed = value; }
 
@@ -31,11 +34,13 @@ namespace ARTech.GameFramework
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.isKinematic = true;
             Character = GetComponent<Character>();
         }
 
         private void FixedUpdate()
         {
+            
             if (_target != null)
             {
                 _rigidbody.MovePosition(Vector3.MoveTowards(_rigidbody.position, _target.Value, _speed * Time.fixedDeltaTime));

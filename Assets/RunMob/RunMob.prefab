@@ -234,9 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0acddb869f28048afb708cadfdd4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackDistance: 0.8
-  maxAttackDistance: 1.5
   cooldown: 2
+  minDistance: 0
+  maxDistance: 0.9
   animationLength: 0.5
   animator: {fileID: 7940277663488795862}
 --- !u!114 &7940277664261202533
@@ -268,8 +268,8 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  angerRadius: 10
-  targetLostTime: 10
+  angerRadius: 12
+  targetLostTime: 20
   minPatrolDistance: 3
   maxPatrolDistance: 4
   patrolSpeed: 2
@@ -329,8 +329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 10
-  minAttackDistance: 3
-  maxAttackDistance: 5
+  minDistance: 2
+  maxDistance: 5
   speed: 20
   time: 2
   animator: {fileID: 7940277663488795862}

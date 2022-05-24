@@ -51,7 +51,7 @@ namespace Mobs
 
             _stateMachine.AddState(new TeleportFromTypesNode(this, _teleportCheckRadius, e => e is Player, _teleportCooldown, _teleportMovementDistance));
             _stateMachine.AddState(new RangedAttackNode(this, attackHandler, _attackMovementSpeed));
-            _stateMachine.AddState(new StrafeState(this, _strageRadius, _strafeSpeed, 1f));
+            _stateMachine.AddState(new StrafeState(this, _strageRadius, _strafeSpeed, 2f));
             _stateMachine.AddState(new TeleportToAreaNode(this, returnDistance, returnDuration, returnGfx));
             _stateMachine.AddState(new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolMovementSpeed, _minPatrolDuration, _maxPatrolDuration));
         }
