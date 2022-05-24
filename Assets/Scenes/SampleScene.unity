@@ -2008,12 +2008,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _prefab
       value: 
-      objectReference: {fileID: 8184043224675228156, guid: 97b0dc8713755d848980df6af831309a,
+      objectReference: {fileID: 4684223820260113428, guid: c1a32162730ef084bb7b2dfe22adf07b,
         type: 3}
     - target: {fileID: 3662340455669421430, guid: 17b1a1fad065bf24fb31efbf5a2f6b04,
         type: 3}
       propertyPath: _maxSpawnCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b1a1fad065bf24fb31efbf5a2f6b04, type: 3}

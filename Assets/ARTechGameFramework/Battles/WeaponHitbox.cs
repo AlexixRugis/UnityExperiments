@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace ARTech.GameFramework
@@ -8,6 +7,8 @@ namespace ARTech.GameFramework
     public class WeaponHitbox : MonoBehaviour
     {
         [SerializeField] private float damage;
+
+        public Predicate<IDamageable> DamageablePredicate { get; set; } = c => true;
 
         private void Awake()
         {
@@ -19,7 +20,7 @@ namespace ARTech.GameFramework
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
 
-            if (damageable != null)
+            if (damageable != null && DamageablePredicate.Invoke(damageable))
             {
                 damageable.TakeDamage(damage);
             }
