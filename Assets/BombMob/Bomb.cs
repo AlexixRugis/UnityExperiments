@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(Rigidbody))]
-    public sealed class Bomb : Projectile
+    public sealed class Bomb : ARTGF_Projectile
     {
         [SerializeField] private float _damageZone;
         [SerializeField] private AnimationCurve _damageFalloff;
@@ -26,7 +26,7 @@ namespace Mobs
 
             foreach (var collider in colliders)
             {
-                IDamageable damagable = collider.GetComponent<IDamageable>();
+                ARTGF_IDamageable damagable = collider.GetComponent<ARTGF_IDamageable>();
                 if (damagable == null || damagable == Shooter) continue;
 
                 if (DamageableTypesPredicate.Invoke(damagable))

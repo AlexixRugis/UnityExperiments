@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace Mobs
 {
-    public sealed class BombMobAttackHandler : AttackHandler
+    public sealed class BombMobAttackHandler : ARTGF_AttackHandler
     {
         [SerializeField] private Transform bombHolder;
         [SerializeField] private Bomb bombPrefab;
         [SerializeField] private float throwAngle;
 
-        protected override IEnumerator Perform(Character target)
+        protected override IEnumerator Perform(ARTGF_Character target)
         {
             IsPerforming = true;
 
             Bomb bomb = Instantiate(bombPrefab, bombHolder.position, Quaternion.identity, bombHolder);
-            bomb.DamageableTypesPredicate = c => c is Player;
+            bomb.DamageableTypesPredicate = c => c is ARTGF_Player;
 
             yield return new WaitForSeconds(1.5f);
 

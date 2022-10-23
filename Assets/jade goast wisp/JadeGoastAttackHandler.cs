@@ -6,21 +6,21 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(JadeGoastWispBT))]
-    public sealed class JadeGoastAttackHandler : AttackHandler
+    public sealed class JadeGoastAttackHandler : ARTGF_AttackHandler
     {
         [SerializeField] private Transform _bulletHolder;
         [SerializeField] private Transform[] _bulletPositions;
-        [SerializeField] private Projectile _projectilePrefab;
+        [SerializeField] private ARTGF_Projectile _projectilePrefab;
         [SerializeField] private float _bulletSpeed;
         [SerializeField] private float _bulletSpawnDuration;
 
-        private Character _host;
-        private Character _target;
+        private ARTGF_Character _host;
+        private ARTGF_Character _target;
         private Vector3 _lastTargetPosition;
 
         private void Awake()
         {
-            _host = GetComponent<Character>();
+            _host = GetComponent<ARTGF_Character>();
         }
 
         private void Update()
@@ -32,16 +32,16 @@ namespace Mobs
             }
         }
 
-        protected override IEnumerator Perform(Character target)
+        protected override IEnumerator Perform(ARTGF_Character target)
         {
             IsPerforming = true;
             _target = target;
-            Projectile[] bullets = new Projectile[_bulletPositions.Length];
+            ARTGF_Projectile[] bullets = new ARTGF_Projectile[_bulletPositions.Length];
             var arr = _bulletPositions.OrderBy(x => Random.Range(0, _bulletPositions.Length)).ToArray();
 
             for (int i = 0; i < bullets.Length; i++)
             {
-                Projectile bullet = Instantiate(_projectilePrefab, arr[i].transform.position, Quaternion.identity, _bulletHolder);
+                ARTGF_Projectile bullet = Instantiate(_projectilePrefab, arr[i].transform.position, Quaternion.identity, _bulletHolder);
                 bullets[i] = bullet;
                 
                 yield return new WaitForSeconds(_bulletSpawnDuration);

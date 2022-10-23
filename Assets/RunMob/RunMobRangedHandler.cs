@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Mobs
 {
-    [RequireComponent(typeof(RunMob), typeof(IMovement))]
-    public sealed class RunMobRangedHandler : AttackHandler
+    [RequireComponent(typeof(RunMob), typeof(ARTGF_IMovement))]
+    public sealed class RunMobRangedHandler : ARTGF_AttackHandler
     {
         private const string AnimatorAttackParam = "RunAttack";
 
@@ -14,14 +14,14 @@ namespace Mobs
         [SerializeField] private Animator animator;
 
         private float _startTime;
-        private IMovement _agent;
+        private ARTGF_IMovement _agent;
 
         private void Awake()
         {
-            _agent = GetComponent<IMovement>();
+            _agent = GetComponent<ARTGF_IMovement>();
         }
 
-        protected override IEnumerator Perform(Character target)
+        protected override IEnumerator Perform(ARTGF_Character target)
         {
             IsPerforming = true;
 

@@ -5,8 +5,8 @@ using ARTech.GameFramework;
 
 namespace Mobs
 {
-    [RequireComponent(typeof(IMovement))]
-    public sealed class JadeGoastWispBT : Character
+    [RequireComponent(typeof(ARTGF_IMovement))]
+    public sealed class JadeGoastWispBT : ARTGF_Character
     {
         [Header("Patrol")]
         [SerializeField] private float _minPatrolDistance;
@@ -30,7 +30,7 @@ namespace Mobs
         [SerializeField] private float returnDuration;
         [SerializeField] private GameObject returnGfx;
 
-        private AIStateMachine _stateMachine = new AIStateMachine();
+        private ARTGF_AIStateMachine _stateMachine = new ARTGF_AIStateMachine();
 
         protected override void HandleSpawn()
         {
@@ -45,15 +45,15 @@ namespace Mobs
 
         private void SetupAI()
         {
-            var attackHandler = GetComponent<IAttackHandler>();
+            var attackHandler = GetComponent<ARTGF_IAttackHandler>();
 
-            _stateMachine.AddSensorTask(new AngerTypesSensor(this, e => e is Player, _attackCheckDistance, _targetLostTime));
+            _stateMachine.AddSensorTask(new ARTGF_AngerTypesSensor(this, e => e is ARTGF_Player, _attackCheckDistance, _targetLostTime));
 
-            _stateMachine.AddState(new TeleportFromTypesNode(this, _teleportCheckRadius, e => e is Player, _teleportCooldown, _teleportMovementDistance));
-            _stateMachine.AddState(new RangedAttackNode(this, attackHandler, _attackMovementSpeed));
-            _stateMachine.AddState(new StrafeState(this, _strageRadius, _strafeSpeed, 2f));
-            _stateMachine.AddState(new TeleportToAreaNode(this, returnDistance, returnDuration, returnGfx));
-            _stateMachine.AddState(new WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolMovementSpeed, _minPatrolDuration, _maxPatrolDuration));
+            _stateMachine.AddState(new ARTGF_TeleportFromTypesNode(this, _teleportCheckRadius, e => e is ARTGF_Player, _teleportCooldown, _teleportMovementDistance));
+            _stateMachine.AddState(new ARTGF_RangedAttackNode(this, attackHandler, _attackMovementSpeed));
+            _stateMachine.AddState(new ARTGF_StrafeState(this, _strageRadius, _strafeSpeed, 2f));
+            _stateMachine.AddState(new ARTGF_TeleportToAreaNode(this, returnDistance, returnDuration, returnGfx));
+            _stateMachine.AddState(new ARTGF_WanderAroundNode(this, _minPatrolDistance, _maxPatrolDistance, _patrolMovementSpeed, _minPatrolDuration, _maxPatrolDuration));
         }
 
         protected void OnDrawGizmosSelected()

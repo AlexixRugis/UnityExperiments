@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(RunMobMeleeHandler))]
-    public sealed class RunMob : Character
+    public sealed class RunMob : ARTGF_Character
     {
         [Header("Anger")]
         [SerializeField] private float angerRadius;
@@ -27,7 +27,7 @@ namespace Mobs
         [SerializeField] private float teleportDuration;
         [SerializeField] private GameObject teleportGfx;
 
-        private AIStateMachine _stateMachine;
+        private ARTGF_AIStateMachine _stateMachine;
 
         protected override void HandleLifeUpdate()
         {
@@ -42,15 +42,15 @@ namespace Mobs
         }
         private void SetupAI()
         {
-            _stateMachine = new AIStateMachine();
+            _stateMachine = new ARTGF_AIStateMachine();
 
-            _stateMachine.AddSensorTask(new AngerTypesSensor(this, c => c is Player, angerRadius, targetLostTime));
+            _stateMachine.AddSensorTask(new ARTGF_AngerTypesSensor(this, c => c is ARTGF_Player, angerRadius, targetLostTime));
 
-            _stateMachine.AddState(new RangedAttackNode(this, GetComponent<RunMobRangedHandler>(), runAttackSpeed));
-            _stateMachine.AddState(new MeleeAttackNode(this, GetComponent<RunMobMeleeHandler>(), meleeAttackSpeed));
-            _stateMachine.AddState(new StrafeState(this, strafeRadius, strafeSpeed, 2f));
-            _stateMachine.AddState(new TeleportToAreaNode(this, teleportDistance, teleportDuration, teleportGfx));
-            _stateMachine.AddState(new WanderAroundNode(this, minPatrolDistance, maxPatrolDistance, patrolSpeed, minPatrolDuration, maxPatrolDuration));
+            _stateMachine.AddState(new ARTGF_RangedAttackNode(this, GetComponent<RunMobRangedHandler>(), runAttackSpeed));
+            _stateMachine.AddState(new ARTGF_MeleeAttackNode(this, GetComponent<RunMobMeleeHandler>(), meleeAttackSpeed));
+            _stateMachine.AddState(new ARTGF_StrafeState(this, strafeRadius, strafeSpeed, 2f));
+            _stateMachine.AddState(new ARTGF_TeleportToAreaNode(this, teleportDistance, teleportDuration, teleportGfx));
+            _stateMachine.AddState(new ARTGF_WanderAroundNode(this, minPatrolDistance, maxPatrolDistance, patrolSpeed, minPatrolDuration, maxPatrolDuration));
         }
     }
 }

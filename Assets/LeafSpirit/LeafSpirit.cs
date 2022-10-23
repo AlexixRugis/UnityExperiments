@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(LeafSpiritAttackHandler))]
-    public sealed class LeafSpirit : Character
+    public sealed class LeafSpirit : ARTGF_Character
     {
         [Header("Anger")]
         [SerializeField] private float angerRadius;
@@ -27,7 +27,7 @@ namespace Mobs
         [SerializeField] private float teleportDuration;
         [SerializeField] private GameObject teleportGFX;
 
-        private AIStateMachine _stateMachine = new AIStateMachine();
+        private ARTGF_AIStateMachine _stateMachine = new ARTGF_AIStateMachine();
         private LeafSpiritAttackHandler _attackHandler;
 
         protected override void HandleSpawn()
@@ -39,11 +39,11 @@ namespace Mobs
 
         private void SetupAI()
         {
-            _stateMachine.AddState(new MeleeAttackNode(this, _attackHandler, attackMovementSpeed));
-            _stateMachine.AddState(new StrafeState(this, strafeDistance, strafeSpeed, 1.5f));
-            _stateMachine.AddState(new TeleportToAreaNode(this, distanceToTeleport, teleportDuration, teleportGFX));
-            _stateMachine.AddState(new WanderAroundNode(this, minWanderDistance, maxWanderDistance, wanderSpeed, minPatrolDuration, maxPatrolDuration));
-            _stateMachine.AddSensorTask(new AngerTypesSensor(this, c => c is Player, angerRadius, targetLostTime));
+            _stateMachine.AddState(new ARTGF_MeleeAttackNode(this, _attackHandler, attackMovementSpeed));
+            _stateMachine.AddState(new ARTGF_StrafeState(this, strafeDistance, strafeSpeed, 1.5f));
+            _stateMachine.AddState(new ARTGF_TeleportToAreaNode(this, distanceToTeleport, teleportDuration, teleportGFX));
+            _stateMachine.AddState(new ARTGF_WanderAroundNode(this, minWanderDistance, maxWanderDistance, wanderSpeed, minPatrolDuration, maxPatrolDuration));
+            _stateMachine.AddSensorTask(new ARTGF_AngerTypesSensor(this, c => c is ARTGF_Player, angerRadius, targetLostTime));
         }
 
         protected override void HandleLifeUpdate()

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(SummonerAttackHandler))]
-    public sealed class SummonerMob : Character
+    public sealed class SummonerMob : ARTGF_Character
     {
         [Header("Anger")]
         [SerializeField] private float angerRadius;
@@ -29,7 +29,7 @@ namespace Mobs
         [SerializeField] private float teleportDuration;
         [SerializeField] private GameObject teleportGFX;
 
-        private AIStateMachine _stateMachine;
+        private ARTGF_AIStateMachine _stateMachine;
 
         protected override void HandleSpawn()
         {
@@ -39,13 +39,13 @@ namespace Mobs
 
         private void SetupAI()
         {
-            _stateMachine = new AIStateMachine();
-            _stateMachine.AddSensorTask(new AngerTypesSensor(this, c => c is Player, angerRadius, targetLostTime));
+            _stateMachine = new ARTGF_AIStateMachine();
+            _stateMachine.AddSensorTask(new ARTGF_AngerTypesSensor(this, c => c is ARTGF_Player, angerRadius, targetLostTime));
 
-            _stateMachine.AddState(new RangedAttackNode(this, GetComponent<SummonerAttackHandler>(), attackSpeed));
-            _stateMachine.AddState(new StrafeState(this, strafeRadius, strafeSpeed, strafeTime));
-            _stateMachine.AddState(new TeleportToAreaNode(this, distanceToArea, teleportDuration, teleportGFX));
-            _stateMachine.AddState(new WanderAroundNode(this, minPatrolDistance, maxPatrolDistance, patrolSpeed, minPatrolDuration, maxPatrolDuration));
+            _stateMachine.AddState(new ARTGF_RangedAttackNode(this, GetComponent<SummonerAttackHandler>(), attackSpeed));
+            _stateMachine.AddState(new ARTGF_StrafeState(this, strafeRadius, strafeSpeed, strafeTime));
+            _stateMachine.AddState(new ARTGF_TeleportToAreaNode(this, distanceToArea, teleportDuration, teleportGFX));
+            _stateMachine.AddState(new ARTGF_WanderAroundNode(this, minPatrolDistance, maxPatrolDistance, patrolSpeed, minPatrolDuration, maxPatrolDuration));
         }
 
         protected override void HandleLifeUpdate()

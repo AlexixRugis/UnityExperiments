@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace Mobs
 {
-    public sealed class SummonerAttackHandler : AttackHandler
+    public sealed class SummonerAttackHandler : ARTGF_AttackHandler
     {
-        [SerializeField] private WeaponHitbox spawnPrefab;
+        [SerializeField] private ARTGF_WeaponHitbox spawnPrefab;
         [SerializeField] private float spawnCount;
         [SerializeField] private float spawnDistance;
         [SerializeField] private float spawnDuration;
 
-        protected override IEnumerator Perform(Character target)
+        protected override IEnumerator Perform(ARTGF_Character target)
         {
             IsPerforming = true;
 
@@ -24,8 +24,8 @@ namespace Mobs
             for (int i = 0; i < spawnCount; i++)
             {
                 Vector3 spawnPoint = transform.position + direction * currentDistance;
-                WeaponHitbox weapon = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
-                weapon.DamageablePredicate = c => c is Player;
+                ARTGF_WeaponHitbox weapon = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
+                weapon.DamageablePredicate = c => c is ARTGF_Player;
 
                 yield return new WaitForSeconds(spawnDuration);
 

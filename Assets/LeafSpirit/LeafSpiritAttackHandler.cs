@@ -5,14 +5,14 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(LeafSpirit))]
-    public sealed class LeafSpiritAttackHandler : AttackHandler
+    public sealed class LeafSpiritAttackHandler : ARTGF_AttackHandler
     {
         private const string AnimatorTriggerName = "Attack";
 
         [SerializeField] private float animationLength;
         [SerializeField] private Animator animator;
 
-        protected override IEnumerator Perform(Character damageable)
+        protected override IEnumerator Perform(ARTGF_Character damageable)
         {
             IsPerforming = true;
 

@@ -19,7 +19,7 @@ public class CameraChainCaster : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
             {
-                var damagable = hit.transform.GetComponent<IDamageable>();
+                var damagable = hit.transform.GetComponent<ARTGF_IDamageable>();
                 if (damagable != null)
                 {
                     damagable.TakeDamage(_damage);
@@ -29,7 +29,7 @@ public class CameraChainCaster : MonoBehaviour
                         _maxRadius, 
                         _damage, 
                         _maxDamagablesCount, 
-                        new List<IDamageable>() { damagable }
+                        new List<ARTGF_IDamageable>() { damagable }
                     );
                 }
 

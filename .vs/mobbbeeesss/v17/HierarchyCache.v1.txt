@@ -1,0 +1,604 @@
+﻿++Решение "mobbbeeesss" ‎(проекты: 1 из 1)
+i:{00000000-0000-0000-0000-000000000000}:mobbbeeesss.sln
+++Assembly-CSharp
+i:{00000000-0000-0000-0000-000000000000}:Assembly-CSharp
+++Ссылки
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Assets
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\
+++ARTechGameFramework
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\
+++AI
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\
+++BehaviourTree
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\
+++Tasks
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\
+++AngerTypesSensor.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\angertypessensor.cs
+++AvoidTypesNode.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\avoidtypesnode.cs
+++ChaseTargetState.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\chasetargetstate.cs
+++MeleeAttackNode.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\meleeattacknode.cs
+++RangedAttackNode.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\rangedattacknode.cs
+++StrafeState.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\strafestate.cs
+++TeleportFromTypesNode.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\teleportfromtypesnode.cs
+++TeleportToAreaNode.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\teleporttoareanode.cs
+++WanderAroundNode.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\tasks\wanderaroundnode.cs
+++AISensorTask.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\aisensortask.cs
+++AIState.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\aistate.cs
+++AIStateMachine.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\aistatemachine.cs
+++BehaviorTreeTask.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\behaviourtree\behaviortreetask.cs
+++Movement
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\movement\
+++AIAgent.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\movement\aiagent.cs
+++FlyAgent.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\movement\flyagent.cs
+++IMovement.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\ai\movement\imovement.cs
+++Battles
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\battles\
+++IAttackHandler.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\battles\iattackhandler.cs
+++IDamageable.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\battles\idamageable.cs
+++IMeleeAttackHandler.cs
+++IRangedAttackHandler.cs
+++WeaponHitbox.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\battles\weaponhitbox.cs
+++Entities
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\entities\
+++Stats
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\entities\stats\
+++EntityStats.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\entities\stats\entitystats.cs
+++Stat.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\entities\stats\stat.cs
+++Character.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\entities\character.cs
+++CharacterStage.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\entities\characterstage.cs
+++Player.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\entities\player.cs
+++Projectile.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\entities\projectile.cs
+++Examples
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\examples\
+++Projectiles
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\examples\projectiles\
+++CameraBulletCaster.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\examples\projectiles\camerabulletcaster.cs
+++DefaultBullet.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\examples\projectiles\defaultbullet.cs
+++ZoneDamageBullet.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\examples\projectiles\zonedamagebullet.cs
+++Dummy.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\examples\dummy.cs
+++Spawning
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\spawning\
+++SpawnArea.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\spawning\spawnarea.cs
+++Spawnpoint.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\spawning\spawnpoint.cs
+++BombMob
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\bombmob\
+++jade goast wisp
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\jade goast wisp\
+++JadeGoastAttackHandler.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\jade goast wisp\jadegoastattackhandler.cs
+++JadeGoastWispBT.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\jade goast wisp\jadegoastwispbt.cs
+++LeafSpirit
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\leafspirit\
+++LeafSpirit.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\leafspirit\leafspirit.cs
+++LeafSpiritAttackHandler.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\leafspirit\leafspiritattackhandler.cs
+++Neftite
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\
+++run away mob
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\run away mob\
+++RunAwayMobBT.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\run away mob\runawaymobbt.cs
+++RunMob
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\runmob\
+++RunMob.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\runmob\runmob.cs
+++RunMobMeleeHandler.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\runmob\runmobmeleehandler.cs
+++RunMobRangedHandler.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\runmob\runmobrangedhandler.cs
+++Scripts
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\scripts\
+++DamageSystem
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\scripts\damagesystem\
+++CameraChainCaster.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\scripts\damagesystem\camerachaincaster.cs
+++ChainDamageEntity.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\scripts\damagesystem\chaindamageentity.cs
+++ChainDamageFactory.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\scripts\damagesystem\chaindamagefactory.cs
+++AgentLinkMover.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\agentlinkmover.cs
+++Microsoft.Win32.Primitives
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++mscorlib
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++netstandard
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Newtonsoft.Json
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.AppContext
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Buffers
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Collections
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Collections.Concurrent
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Collections.NonGeneric
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Collections.Specialized
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.ComponentModel
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.ComponentModel.Composition
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.ComponentModel.EventBasedAsync
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.ComponentModel.Primitives
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.ComponentModel.TypeConverter
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Console
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Core
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Data
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Data.Common
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.Contracts
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.Debug
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.FileVersionInfo
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.Process
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.StackTrace
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.TextWriterTraceListener
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.Tools
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.TraceSource
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Diagnostics.Tracing
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Drawing
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Drawing.Primitives
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Dynamic.Runtime
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Globalization
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Globalization.Calendars
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Globalization.Extensions
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.Compression
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.Compression.FileSystem
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.Compression.ZipFile
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.FileSystem
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.FileSystem.DriveInfo
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.FileSystem.Primitives
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.FileSystem.Watcher
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.IsolatedStorage
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.MemoryMappedFiles
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.Pipes
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.IO.UnmanagedMemoryStream
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Linq
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Linq.Expressions
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Linq.Parallel
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Linq.Queryable
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Memory
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.Http
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.NameResolution
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.NetworkInformation
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.Ping
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.Primitives
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.Requests
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.Security
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.Sockets
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.WebHeaderCollection
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.WebSockets
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Net.WebSockets.Client
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Numerics
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Numerics.Vectors
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.ObjectModel
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Reflection
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Reflection.DispatchProxy
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Reflection.Emit
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Reflection.Emit.ILGeneration
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Reflection.Emit.Lightweight
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Reflection.Extensions
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Reflection.Primitives
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Resources.Reader
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Resources.ResourceManager
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Resources.Writer
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.CompilerServices.VisualC
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.Extensions
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.Handles
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.InteropServices
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.InteropServices.RuntimeInformation
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.InteropServices.WindowsRuntime
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.Numerics
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.Serialization
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.Serialization.Formatters
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.Serialization.Json
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.Serialization.Primitives
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Runtime.Serialization.Xml
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Security.Claims
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Security.Cryptography.Algorithms
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Security.Cryptography.Csp
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Security.Cryptography.Encoding
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Security.Cryptography.Primitives
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Security.Cryptography.X509Certificates
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Security.Principal
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Security.SecureString
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.ServiceModel.Web
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Text.Encoding
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Text.Encoding.Extensions
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Text.RegularExpressions
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Threading
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Threading.Overlapped
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Threading.Tasks
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Threading.Tasks.Extensions
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Threading.Tasks.Parallel
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Threading.Thread
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Threading.ThreadPool
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Threading.Timer
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Transactions
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.ValueTuple
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Web
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Windows
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml.Linq
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml.ReaderWriter
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml.Serialization
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml.XDocument
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml.XmlDocument
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml.XmlSerializer
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml.XPath
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++System.Xml.XPath.XDocument
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Unity.PlasticSCM.Editor
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Unity.Rider.Editor
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Unity.TextMeshPro
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Unity.TextMeshPro.Editor
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Unity.Timeline
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Unity.Timeline.Editor
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Unity.VisualStudio.Editor
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++Unity.VSCode.Editor
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.CoreModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.DeviceSimulatorModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.DiagnosticsModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.GraphViewModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.PackageManagerUIModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.QuickSearchModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.SceneTemplateModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.TextCoreFontEngineModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.TextCoreTextEngineModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.UI
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.UIBuilderModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.UIElementsModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.UIElementsSamplesModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.UIServiceModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEditor.UnityConnectModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.AccessibilityModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.AIModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.AndroidJNIModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.AnimationModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.ARModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.AssetBundleModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.AudioModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.ClothModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.ClusterInputModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.ClusterRendererModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.CoreModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.CrashReportingModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.DirectorModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.DSPGraphModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.GameCenterModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.GIModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.GridModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.HotReloadModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.ImageConversionModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.IMGUIModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.InputLegacyModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.InputModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.JSONSerializeModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.LocalizationModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.ParticleSystemModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.PerformanceReportingModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.Physics2DModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.PhysicsModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.ProfilerModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.ScreenCaptureModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.SharedInternalsModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.SpriteMaskModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.SpriteShapeModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.StreamingModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.SubstanceModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.SubsystemsModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.TerrainModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.TerrainPhysicsModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.TextCoreFontEngineModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.TextCoreTextEngineModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.TextRenderingModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.TilemapModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.TLSModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UI
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UIElementsModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UIElementsNativeModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UIModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UmbraModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UNETModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityAnalyticsModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityConnectModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityCurlModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityTestProtocolModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityWebRequestAssetBundleModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityWebRequestAudioModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityWebRequestModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityWebRequestTextureModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.UnityWebRequestWWWModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.VehiclesModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.VFXModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.VideoModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.VirtualTexturingModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.VRModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.WindModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++UnityEngine.XRModule
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:
+++BombMob.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\bombmob\bombmob.cs
+++Boss.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\boss.cs
+++IBossStage.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\ibossstage.cs
+++Mob.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\mob.cs
+++NefriteBoss.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\nefriteboss.cs
+++NefriteBossCreationStage.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\nefritebosscreationstage.cs
+++NefriteBossFistStage.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\nefritebossfiststage.cs
+++NefriteBossStrengthStage.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\nefritebossstrengthstage.cs
+++NefriteBossTruthStage.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\nefritebosstruthstage.cs
+++StrengthLaser.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\strengthlaser.cs
+++StrengthWeapon.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\strengthweapon.cs
+++StrengthWeaponRoot.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\neftite\strengthweaponroot.cs
+++Assembly-CSharp (выгружено)
+++Решение "mobbbeeesss" ‎(проекты: 0 из 1)
+++AttackHandler.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\battles\attackhandler.cs
+++BombMobAttackHandler.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\bombmob\bombmobattackhandler.cs
+++Bomb.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\bombmob\bomb.cs
+++Summoner
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\summoner\
+++SummonerMob.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\summoner\summonermob.cs
+++SummonerAttackHandler.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\summoner\summonerattackhandler.cs
+++Utils
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\utils\
+++Lifetime.cs
+i:{2a5b6e28-9db1-7f4b-f5c8-59a3179cf770}:d:\unity projects\mobbbeeesss\assets\artechgameframework\utils\lifetime.cs

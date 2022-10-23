@@ -7,7 +7,7 @@ namespace Mobs
 {
     public static class ChainDamageFactory
     {
-        public static void Spawn(ChainDamageEntity prefab, Vector3 from, Vector3 to, float maxRadius, int damage, int remainingDamagebles, List<IDamageable> damaged)
+        public static void Spawn(ChainDamageEntity prefab, Vector3 from, Vector3 to, float maxRadius, int damage, int remainingDamagebles, List<ARTGF_IDamageable> damaged)
         {
             ChainDamageEntity damageEntity = Object.Instantiate(prefab, from, Quaternion.identity);
 

@@ -5,14 +5,14 @@ using UnityEngine;
 namespace Mobs
 {
     [RequireComponent(typeof(RunMob))]
-    public sealed class RunMobMeleeHandler : AttackHandler
+    public sealed class RunMobMeleeHandler : ARTGF_AttackHandler
     {
         private const string AnimatorTriggerName = "Attack";
 
         [SerializeField] private float animationLength;
         [SerializeField] private Animator animator;
 
-        protected override IEnumerator Perform(Character damageable)
+        protected override IEnumerator Perform(ARTGF_Character damageable)
         {
             IsPerforming = true;
 
