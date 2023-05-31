@@ -25,7 +25,7 @@ namespace Mobs
 
         private void Update()
         {
-            if (_target != null && _host.CanSee(_target, float.MaxValue))
+            if (_target != null && ARTGF_Utils.CanSee(_host.transform.position, _target, float.MaxValue))
             {
                 _lastTargetPosition = _target.transform.position;
                 _bulletHolder.LookAt(_lastTargetPosition);

@@ -26,7 +26,7 @@ namespace ARTech.GameFramework.AI
         {
             if (_host.BattleTarget)
             {
-                if (_host.CanSee(_host.BattleTarget, _radius))
+                if (ARTGF_Utils.CanSee(_host.transform.position, _host.BattleTarget, _radius))
                 {
                     _lastTargetSeeTime = Time.time;
                 }
@@ -39,7 +39,7 @@ namespace ARTech.GameFramework.AI
                 return;
             }
 
-            ARTGF_Character target = _host.GetNearest(_match, _radius);
+            ARTGF_Character target = ARTGF_Utils.GetNearest(_host.transform.position, _radius, _match);
             if (target != null)
             {
                 _host.BattleTarget = target;

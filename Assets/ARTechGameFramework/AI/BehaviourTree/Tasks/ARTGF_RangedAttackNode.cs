@@ -39,7 +39,7 @@ namespace ARTech.GameFramework.AI
             if (!target) return ARTGF_AIStateResult.Success;
 
             float distance = (_host.transform.position - target.transform.position).magnitude;
-            bool canSeeTarget = _host.CanSee(target, float.MaxValue);
+            bool canSeeTarget = ARTGF_Utils.CanSee(_host.transform.position, target, float.MaxValue);
 
             if (!_isPerforming && canSeeTarget)
             {

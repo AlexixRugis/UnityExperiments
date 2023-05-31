@@ -34,7 +34,7 @@ namespace ARTech.GameFramework.AI
                 return false;
             }
 
-            _target = _host.GetNearest(_match, _checkRadius);
+            _target = ARTGF_Utils.GetNearest(_host.transform.position, _checkRadius, _match);
 
             if (_target == null)
             {
@@ -49,7 +49,7 @@ namespace ARTech.GameFramework.AI
         public override ARTGF_AIStateResult Evaluate()
         {
             if (_agent.Teleport(
-                _host.GetRandomPositionAround(_distance)
+                ARTGF_Utils.GetRandomPositionAround(_host.transform.position, _host.MovementController.AgentRadius, _distance)
             ))
             {
                 _lastTeleportTime = Time.time;

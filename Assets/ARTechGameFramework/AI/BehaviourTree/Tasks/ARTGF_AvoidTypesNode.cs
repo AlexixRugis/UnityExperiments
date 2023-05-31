@@ -24,20 +24,22 @@ namespace ARTech.GameFramework.AI
 
         public override bool CanEnter()
         {
-            return _host.GetNearest(_match, _checkDistance);
+            return ARTGF_Utils.GetNearest(_host.transform.position, _checkDistance, _match);
         }
 
         public override bool CanExit() => true;
 
         public override ARTGF_AIStateResult Evaluate()
         {
-            _avoidTarget = _host.GetNearest(_match, _checkDistance);
+            _avoidTarget = ARTGF_Utils.GetNearest(_host.transform.position, _checkDistance, _match); ;
             if (_avoidTarget == null) return ARTGF_AIStateResult.Success;
 
             _agent.Speed = _runSpeed;
             _agent.TryMove(
-                _host.GetPositionFrom(
+                ARTGF_Utils.GetPositionFrom(
+                    _host.transform.position,
                     _avoidTarget.transform.position,
+                    _host.MovementController.AgentRadius,
                     2f
                 )
             );

@@ -51,7 +51,7 @@ namespace ARTech.GameFramework.AI
                 }
                 else
                 {
-                    targetPoint = _host.GetRandomPositionAround(patrolDistance);
+                    targetPoint = ARTGF_Utils.GetRandomPositionAround(_host.transform.position, _host.MovementController.AgentRadius, patrolDistance);
                 }
 
                 if (_agent.TryMove(targetPoint)) {
